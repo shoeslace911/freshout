@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 0ebdde5f876e942bc31a80c728a16774c8596ec5
+  branch: main
+  specs:
+    faker (3.0.0)
+      i18n (>= 1.8.11, < 2)
+
+GIT
   remote: https://github.com/heartcombo/simple_form.git
   revision: 31fe25504771bd6cd425b585a4e0ed652fba4521
   specs:
@@ -145,6 +153,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
+    nokogiri (1.13.9-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -242,6 +252,7 @@ GEM
     zeitwerk (2.6.6)
 
 PLATFORMS
+  arm64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
@@ -251,6 +262,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  faker!
   font-awesome-sass (~> 6.1)
   jbuilder
   jsbundling-rails
