@@ -1,7 +1,7 @@
 class HouseFoodPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user: user)
+      scope.where(house: user.house)
     end
   end
 
@@ -16,4 +16,5 @@ class HouseFoodPolicy < ApplicationPolicy
   def create?
     true
   end
+
 end

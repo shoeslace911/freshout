@@ -1,5 +1,5 @@
 <div class="container">
-  <h1><%= @house.name%>'s Inventory</h1>
+  <h1>Inventory</h1>
   <div class="cards">
     <% @foods.each do |food|  %>
       <%= link_to house_food_path(food), class: 'links'  do%>
