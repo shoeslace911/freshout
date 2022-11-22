@@ -1,6 +1,9 @@
 class HouseFoodsController < ApplicationController
   def index
+  # pundit thing
     @house_foods = policy_scope(HouseFood)
+    @foods = HouseFood.all
+    @house = House.find(1)
   end
 
   def show

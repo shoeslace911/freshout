@@ -1,2 +1,12 @@
-<h1>Food Index</h1>
-
+<div class="container">
+  <h1><%= @house.name%>'s Inventory</h1>
+  <div class="cards">
+    <% @foods.each do |food|  %>
+    <%= link_to house_food_path(food), class: 'links'  do%>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=   'https://source.unsplash.com/random/?' + food.food.name %>)">
+    <%= food.food.name %>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
