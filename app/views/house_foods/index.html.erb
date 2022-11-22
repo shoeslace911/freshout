@@ -2,11 +2,14 @@
   <h1><%= @house.name%>'s Inventory</h1>
   <div class="cards">
     <% @foods.each do |food|  %>
-    <%= link_to house_food_path(food), class: 'links'  do%>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=   'https://source.unsplash.com/random/?' + food.food.name %>)">
-    <%= food.food.name %>
+      <%= link_to house_food_path(food), class: 'links'  do%>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=   'https://source.unsplash.com/random/?' + food.food.name %>)">
+          <div class="card-details">
+            <h2><%= food.food.name %></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <% end %>
-    <% end %>
-  </div>
-</div>
+    <%# add a red border when the expirary date is within 3 days (Today.date - @foods.expirary_date)?%>
