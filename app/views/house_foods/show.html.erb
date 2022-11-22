@@ -1,1 +1,20 @@
-<h1>Show page</h1>
+<div class="text-center mt-3">
+  <div class="mb-3">
+    <h1 class="d-inline"><%= @house_food.food.name %></h1>
+    <small class="ms-2">
+      <%= link_to '#', class: 'text-decoration-none', style: 'color: rgb(40, 40, 40);' do %>
+        <i class="fa-solid fa-pen-to-square mx-1"></i>
+      <% end %>
+      <%= link_to '#', class: 'text-decoration-none', style: 'color: rgb(40, 40, 40);' do %>
+        <i class="fa-solid fa-utensils mx-1"></i>
+      <% end %>
+      <%# <i class="fa-solid fa-trash mx-1"></i> %>
+    </small>
+    <% food = @house_food.food.name %>
+    <%= image_tag "http://source.unsplash.com/featured/?#{food}", alt: "text", class: 'my-3 d-block', style: 'width: 80%; height: 40vh; object-fit: cover; border-radius: 4px; margin: 0 auto;' %>
+    <p>Bought: <%= @house_food.bought_date %></p>
+    <p>Expire: <%= @house_food.expiry_date %></p>
+    <p>Category: <%= @house_food.food.category %></p>
+    <p>Amount: <%= @house_food.amount %></p>
+  </div>
+</div>

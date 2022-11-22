@@ -1,8 +1,19 @@
 class HouseFoodsController < ApplicationController
   def index
+    # pundit thing
+    @foods = policy_scope(HouseFood)
+    # authorize @foods
+
   end
 
   def show
+    @house_food = HouseFood.find(params[:id])
+    authorize @house_food
+  end
+
+  def new
+    @house_food = HouseFood.new
+    authorize @house_food
   end
 
   def create
@@ -13,4 +24,5 @@ class HouseFoodsController < ApplicationController
 
   def destroy
   end
+
 end
