@@ -1,6 +1,11 @@
 <div class="container">
-  <h1>ADD NEW FOOD</h1>
+  <h1 class="text-center my-2">ADD NEW FOOD</h1>
   <%= simple_form_for @house_food  do |f| %>
+    <%= f.association :food %>
+    <%= f.input :amount, :class => "new_food_input" %>
+    <%= f.input :bought_date %>
+    <%= f.input :expiry_date %>
+    <%= f.submit  %>
     <%= f.input :photo %>
   <% end %>
 </div>
