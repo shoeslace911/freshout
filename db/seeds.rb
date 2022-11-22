@@ -1,3 +1,5 @@
+require "open-uri"
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -16,23 +18,33 @@ House.create!(
   name: "Will's house"
 )
 
-8.times do
+fruits_list = ['Pineapple', 'Banana', 'Orange', 'Grape', 'Apple', 'Strawberry', 'Kiwi', 'Melon']
+vegetables_list = ['Potato', 'Carrot', 'Letuce', 'Cabbage', 'Peppers', 'Onion', 'Broccoli', 'Cucumber']
+
+6.times do
+  fruit = fruits_list.sample
+  vegetable = vegetables_list.sample
+
   fruits = Food.new(
-    name: Faker::Food.fruits,
+    name: fruit,
     category: 'Fruit'
   )
   vegetables = Food.new(
-    name: Faker::Food.vegetables,
+    name: vegetable,
     category: 'Vegetables'
   )
+
+  fruits_list.delete(fruit)
+  vegetables_list.delete(vegetable)
+
   fruits.save!
   vegetables.save!
 end
 
-8.times do
-  foods = Food.all
+foods = Food.all
+10.times do
   food = foods.sample
-  HouseFood.create!(
+  house_food = HouseFood.create!(
     food: food,
     house: House.first,
     bought_date: Faker::Date.between(from: '2023-01-01', to: '2023-01-04'),
@@ -41,6 +53,11 @@ end
     amount: rand(1..4),
     owned: true
   )
+  file = URI.open("https://source.unsplash.com/random/?#{house_food.food.name}-#{house_food.food.category}")
+  house_food.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+  puts "Created #{house_food.food.name} as a house food."
+
+  foods -= [food]
 end
 
 # House has to exist before user, this is a problem

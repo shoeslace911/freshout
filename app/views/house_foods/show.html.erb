@@ -11,7 +11,7 @@
       <%# <i class="fa-solid fa-trash mx-1"></i> %>
     </small>
     <% food = @house_food.food.name %>
-    <%= image_tag "http://source.unsplash.com/featured/?#{food}", alt: "text", class: 'my-3 d-block', style: 'width: 80%; height: 40vh; object-fit: cover; border-radius: 4px; margin: 0 auto;' %>
+    <%= cl_image_tag @house_food.photo.key, alt: "text", class: 'my-3 d-block', style: 'width: 80%; height: 40vh; object-fit: cover; border-radius: 4px; margin: 0 auto;' %>
     <p>Bought: <%= @house_food.bought_date %></p>
     <p>Expire: <%= @house_food.expiry_date %></p>
     <p>Category: <%= @house_food.food.category %></p>
