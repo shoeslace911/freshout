@@ -10,7 +10,10 @@ class HouseFoodsController < ApplicationController
 
   def create
   end
-
+  
+  def new
+    @house_food = HouseFood.new
+  end
   def update
   end
 
