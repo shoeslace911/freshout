@@ -1,0 +1,18 @@
+.button {
+  /* button */
+  display: block;
+  box-sizing: border-box;
+  width: 150px;
+  box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.25));
+  text-shadow: (2px 5px 7px rgba(0, 0, 0, 0.25));
+  color: rgb(240, 240, 240);
+  border-radius: 9px;
+  background-color: #5BAC29;
+  text-decoration: none;
+  padding: 16px 24px;
+  transition: 0.30s;
+  &:hover {
+    color: #5BAC29;
+    background-color: rgb(240, 240, 240);
+  }
+}
