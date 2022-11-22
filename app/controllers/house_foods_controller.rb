@@ -1,9 +1,9 @@
 class HouseFoodsController < ApplicationController
   def index
-  # pundit thing
+    # pundit thing
     @foods = policy_scope(HouseFood)
     # authorize @foods
-    
+
   end
 
   def show
