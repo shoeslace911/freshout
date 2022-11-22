@@ -3,6 +3,7 @@ class HouseFoodsController < ApplicationController
   end
 
   def show
+    @house_food = HouseFood.find(params[:id])
   end
 
   def create
