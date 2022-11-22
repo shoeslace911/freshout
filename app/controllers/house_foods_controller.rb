@@ -1,5 +1,7 @@
 class HouseFoodsController < ApplicationController
   def index
+    @foods = HouseFood.all
+    @house = House.find(1)
   end
 
   def show
