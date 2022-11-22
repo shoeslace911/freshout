@@ -2,6 +2,7 @@
   background-size: cover;
   background-position: center;
   height: 180px;
+  position: relative;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -12,7 +13,11 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-
+.card-details {
+  position: absolute;
+  bottom: 10%;
+  filter: brightness(100%);
+}
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
