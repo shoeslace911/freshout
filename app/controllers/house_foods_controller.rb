@@ -1,9 +1,6 @@
 class HouseFoodsController < ApplicationController
   def index
-    @house_foods = policy_scope(HouseFood)
-    @foods = HouseFood.all
-    @house = House.find(2)
-    @foods = policy_scope(HouseFood)
+  @foods = policy_scope(HouseFood)
   end
 
   def show
