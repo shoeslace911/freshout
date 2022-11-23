@@ -42,7 +42,7 @@ vegetables_list = ['Potato', 'Carrot', 'Letuce', 'Cabbage', 'Peppers', 'Onion', 
 end
 
 foods = Food.all
-10.times do
+1.times do
   food = foods.sample
   house_food = HouseFood.create!(
     food: food,
@@ -50,7 +50,7 @@ foods = Food.all
     bought_date: Faker::Date.between(from: '2023-01-01', to: '2023-01-04'),
     expiry_date: Faker::Date.between(from: '2023-01-04', to: '2023-01-08'),
     comment: '',
-    amount: rand(1..4),
+    amount: 1,
     owned: true
   )
   file = URI.open("https://source.unsplash.com/random/?#{house_food.food.name}-#{house_food.food.category}")
