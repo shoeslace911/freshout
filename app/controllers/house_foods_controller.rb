@@ -1,6 +1,14 @@
 class HouseFoodsController < ApplicationController
   def index
-  @foods = policy_scope(HouseFood)
+    if params[:query].present?
+      @foods = policy_scope(HouseFood).search(params[:query])
+    else
+      @foods = policy_scope(HouseFood)
+    end
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "house_foods/cards", locals: { foods: @foods }, formats: [:html] }
+    end
   end
 
   def show
