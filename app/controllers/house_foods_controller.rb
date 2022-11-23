@@ -37,9 +37,7 @@ class HouseFoodsController < ApplicationController
     @house_food = HouseFood.find(params[:id])
     @house_food.amount -= 1
     authorize @house_food
-    if @house_food.save
-      redirect_to house_food_path(@house_food)
-    end
+    redirect_to house_food_path(@house_food) if @house_food.save
   end
 
   private
