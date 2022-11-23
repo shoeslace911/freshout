@@ -17,4 +17,7 @@ class HouseFoodPolicy < ApplicationPolicy
     true
   end
 
+  def eat?
+    true
+  end
 end

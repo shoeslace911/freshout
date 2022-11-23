@@ -32,6 +32,12 @@ class HouseFoodsController < ApplicationController
   def destroy
   end
 
+  def eat
+    @house_food = HouseFood.find(params[:id])
+    authorize @house_food
+    raise
+  end
+
   private
 
   def house_food_params

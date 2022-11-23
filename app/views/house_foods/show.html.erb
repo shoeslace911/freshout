@@ -5,10 +5,11 @@
       <%= link_to '#', class: 'text-decoration-none', style: 'color: rgb(40, 40, 40);' do %>
         <i class="fa-solid fa-pen-to-square mx-1"></i>
       <% end %>
-      <%= link_to '#', class: 'text-decoration-none', style: 'color: rgb(40, 40, 40);' do %>
-        <i class="fa-solid fa-utensils mx-1"></i>
+      <%= simple_form_for @house_food, url: eat_house_food_path do |f| %>
+        <%= button_tag type: 'submit' do %>
+          <i class="fa-solid fa-utensils mx-1"></i>
+        <% end %>
       <% end %>
-      <%# <i class="fa-solid fa-trash mx-1"></i> %>
     </small>
     <% if @house_food.photo.attached? %>
       <%= cl_image_tag @house_food.photo.key, alt: "text", class: 'my-3 d-block', style: 'width: 80%; height: 40vh; object-fit: cover; border-radius: 4px; margin: 0 auto;' %>
