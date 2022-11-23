@@ -54,7 +54,7 @@ foods = Food.all
     owned: true
   )
   file = URI.open("https://source.unsplash.com/random/?#{house_food.food.name}-#{house_food.food.category}")
-  house_food.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+  house_food.food.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
   puts "Created #{house_food.food.name} as a house food."
 
   foods -= [food]

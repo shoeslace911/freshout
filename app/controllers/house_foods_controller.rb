@@ -1,9 +1,9 @@
 class HouseFoodsController < ApplicationController
   def index
     if params[:query].present?
-      @foods = policy_scope(HouseFood).search(params[:query])
+      @foods = policy_scope(HouseFood).search(params[:query]).order("expiry_date ASC")
     else
-      @foods = policy_scope(HouseFood)
+      @foods = policy_scope(HouseFood).order("expiry_date ASC")
     end
     respond_to do |format|
       format.html # Follow regular flow of Rails
