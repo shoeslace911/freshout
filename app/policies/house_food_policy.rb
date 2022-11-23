@@ -20,4 +20,8 @@ class HouseFoodPolicy < ApplicationPolicy
   def eat?
     true
   end
+
+  def destroy?
+    true
+  end
 end

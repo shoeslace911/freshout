@@ -1,16 +1,16 @@
 <div class="text-center mt-3">
   <div class="mb-3">
     <h1 class="d-inline"><%= @house_food.food.name %></h1>
-    <small class="ms-2">
-      <%= link_to '#', class: 'text-decoration-none', style: 'color: rgb(40, 40, 40);' do %>
-        <i class="fa-solid fa-pen-to-square mx-1"></i>
+    <div class="d-flex justify-content-center gap-3">
+      <%= link_to house_food_path(@house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-solid fa-trash"></i>
       <% end %>
       <%= simple_form_for @house_food, url: eat_house_food_path do |f| %>
         <%= button_tag type: 'submit' do %>
           <i class="fa-solid fa-utensils mx-1"></i>
         <% end %>
       <% end %>
-    </small>
+    </div>
     <% if @house_food.photo.attached? %>
       <%= cl_image_tag @house_food.photo.key, alt: "text", class: 'my-3 d-block', style: 'width: 80%; height: 40vh; object-fit: cover; border-radius: 4px; margin: 0 auto;' %>
     <% else %>
