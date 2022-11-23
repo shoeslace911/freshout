@@ -6,4 +6,14 @@ class HouseFood < ApplicationRecord
   validates :amount, presence: true
   validates :bought_date, presence: true
   validates :expiry_date, presence: true
+
+  include PgSearch::Model
+  pg_search_scope :search,
+  associated_against: {
+    food: [:name]
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
+
 end

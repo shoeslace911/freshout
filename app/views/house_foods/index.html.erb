@@ -1,21 +1,19 @@
-<div class="container">
+<div class="container" data-controller="search-foods">
   <h1 style = "color:#73c070">Inventory <%= link_to new_house_food_path  do%>
-   <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
-  <% end %></h1>
-  <div class="cards">
-    <% @foods.each do |food|  %>
-      <%= link_to house_food_path(food), class: 'links'  do%>
-        <%# test the ternary if statement when the house food create starts working %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= food.photo.attached? ? cl_image_path(food.photo.key) : image_path("no-image.jpg") %>)" id="<%= (food.expiry_date - Date.today).to_i %>">
-           <div class="icon">
-           <i class="fa-solid fa-triangle-exclamation"></i>
-           </div>
-          <div class="card-details">
-            <h4><%= food.amount %> <%= food.food.name %></h4>
-          </div>
-        </div>
-      <% end %>
+      <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
+    <% end %></h1>
+  <div>
+    <%= form_with url: house_foods_path, method: :get, html: {class:
+    "mb-4", data: {search_foods_target: "form"}} do |f| %>
+      <%= f.text_field :query, class: "form-control", placeholder:
+                     "Search your kitchen", value: params[:query],
+                     data: {
+                        search_foods_target: "input",
+                        action: "keyup->search-foods#update"
+                      } %>
     <% end %>
   </div>
+  <div data-search-foods-target="cards" class ="cards">
+    <%= render "cards", foods: @foods%>
+  </div>
 </div>
-<%# add a red border when the expirary date is within 3 days (Today.date - @foods.expirary_date)?%>
