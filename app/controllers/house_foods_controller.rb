@@ -26,10 +26,18 @@ class HouseFoodsController < ApplicationController
     end
   end
 
-  def update
+  def destroy
+    @house_food = HouseFood.find(params[:id])
+    authorize @house_food
+    @house_food.destroy
+    redirect_to house_foods_path
   end
 
-  def destroy
+  def eat
+    @house_food = HouseFood.find(params[:id])
+    @house_food.amount -= 1
+    authorize @house_food
+    redirect_to house_food_path(@house_food) if @house_food.save
   end
 
   private
