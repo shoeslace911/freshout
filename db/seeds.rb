@@ -12,10 +12,16 @@ puts 'Destroying previous seeds...'
 Food.destroy_all
 House.destroy_all
 HouseFood.destroy_all
+ShoppingList.destroy_all
+Item.destroy_all
 
 puts 'Creating seeds...'
 House.create!(
   name: "Will's house"
+)
+
+ShoppingList.create!(
+  house: House.first
 )
 
 fruits_list = ['Pineapple', 'Banana', 'Orange', 'Grape', 'Apple', 'Strawberry', 'Kiwi', 'Melon']
@@ -60,8 +66,15 @@ foods = Food.all
   foods -= [food]
 end
 
+6.times do
+  Item.create(
+    shopping_list: ShoppingList.first,
+    food: foods.sample
+  )
+end
+
 # House has to exist before user, this is a problem
 User.create!(username: 'will_hargrave', email: 'will@will.com', password: 123456, house: House.first)
 User.create!(username: 'sho_fujiwara', email: 'sho@sho.com', password: 123456, house: House.first)
 
-puts "Created #{Food.count} foods, #{House.count} houses, #{HouseFood.count} house foods, #{User.count} users."
+puts "Created #{Food.count} foods, #{House.count} houses, #{HouseFood.count} house foods, #{User.count} users, #{ShoppingList.count} shopping list, #{Item.count} items."
