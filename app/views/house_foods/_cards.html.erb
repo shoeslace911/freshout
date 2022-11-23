@@ -7,9 +7,12 @@
             <i class="fa-solid fa-triangle-exclamation"></i>
           </div>
           <div class="card-details">
-            <h4><%= food.amount %> <%= food.food.name %></h4>
+             <% if food.amount > 1 %>
+              <h4><%= food.amount %> <%= food.food.name %>s</h4>
+              <% else %>
+              <h4><%= food.amount %> <%= food.food.name %></h4>
+              <% end %>
           </div>
         </div>
       <% end %>
     <% end %>
-  
