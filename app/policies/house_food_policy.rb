@@ -17,4 +17,11 @@ class HouseFoodPolicy < ApplicationPolicy
     true
   end
 
+  def eat?
+    true
+  end
+
+  def destroy?
+    true
+  end
 end
