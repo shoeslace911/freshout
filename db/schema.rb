@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_22_015448) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_23_031959) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,12 +69,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_015448) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "shopping_lists", force: :cascade do |t|
-    t.bigint "house_id", null: false
-    t.bigint "house_food_id", null: false
+  create_table "items", force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "shopping_list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["house_food_id"], name: "index_shopping_lists_on_house_food_id"
+    t.index ["food_id"], name: "index_items_on_food_id"
+    t.index ["shopping_list_id"], name: "index_items_on_shopping_list_id"
+  end
+
+  create_table "shopping_lists", force: :cascade do |t|
+    t.bigint "house_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["house_id"], name: "index_shopping_lists_on_house_id"
   end
 
@@ -97,7 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_015448) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "house_foods", "foods"
   add_foreign_key "house_foods", "houses"
-  add_foreign_key "shopping_lists", "house_foods"
+  add_foreign_key "items", "foods"
+  add_foreign_key "items", "shopping_lists"
   add_foreign_key "shopping_lists", "houses"
   add_foreign_key "users", "houses"
 end
