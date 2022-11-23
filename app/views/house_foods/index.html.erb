@@ -1,8 +1,5 @@
 <div class="container" data-controller="search-foods">
   <h1 style = "color:#73c070">Inventory <%= link_to new_house_food_path  do%>
-# start here
-
-# end here
       <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
     <% end %></h1>
   <div>
@@ -14,7 +11,6 @@
                         search_foods_target: "input",
                         action: "keyup->search-foods#update"
                       } %>
-# I am the end of the conflict
     <% end %>
   </div>
   <div data-search-foods-target="cards" class ="cards">
