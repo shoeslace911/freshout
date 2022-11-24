@@ -34,7 +34,6 @@ puts "House foods created"
 end
 puts "Items created"
 
-# House has to exist before user, this is a problem
 User.create!(username: 'will_hargrave', email: 'will@will.com', password: 123456, house: House.first)
 User.create!(username: 'sho_fujiwara', email: 'sho@sho.com', password: 123456, house: House.first)
 puts "Users created"
