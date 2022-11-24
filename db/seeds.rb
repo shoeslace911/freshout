@@ -10,6 +10,7 @@ ShoppingList.create!(
   house: House.first
 )
 puts "Shopping list created"
+
 10.times do
   foods = Food.all.uniq.sample
   house_food = HouseFood.where(food: foods).find_or_create_by(
@@ -27,9 +28,10 @@ end
 puts "House foods created"
 
 6.times do
-  Item.create(
+  Item.create!(
     shopping_list: ShoppingList.first,
-    food: foods.sample
+    food: Food.all.sample,
+    amount: 6
   )
 end
 puts "Items created"

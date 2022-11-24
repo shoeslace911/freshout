@@ -1,6 +1,5 @@
 <%= simple_form_for [item.food, house_food] do |f| %>
-  <%= f.input :amount %>
-  <%= f.submit do %>
-    <i class=“fa-solid fa-plus”></i>
-  <% end %>
+  <%= hidden_field_tag :amount, item.amount %>
+  <%= hidden_field_tag :item_id, item.id %>
+  <%= submit_tag '+', type: 'submit', class: 'eat-button' %>
 <% end %>

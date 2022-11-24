@@ -24,16 +24,31 @@ class HouseFoodsController < ApplicationController
   end
 
   def create
-    @house_food = HouseFood.new(house_food_params)
     # if the create is coming from the shopping list
     # otherwise, the food is submitted in the form
-    if params[:food_id].present?
+    if from_shopping_list?
       food = Food.find(params[:food_id])
-      @house_food.food = food
+      @house_food = HouseFood.new(
+        food: food,
+        bought_date: Date.today,
+        expiry_date: Date.today + 7,
+        house: current_user.house,
+        owned: true,
+        amount: params[:amount].to_i
+      )
+    else
+      @house_food = HouseFood.new(house_food_params)
     end
     @house_food.house = current_user.house
+
     authorize @house_food
-    if @house_food.save
+
+    # this is when the food is created from inventory
+    if from_shopping_list? && @house_food.save
+      item = Item.find(params[:item_id].to_i)
+      item.destroy
+      redirect_to house_foods_path
+    elsif @house_food.save
       redirect_to house_foods_path
     else
       render :new, status: :unprocessable_entity
@@ -58,5 +73,9 @@ class HouseFoodsController < ApplicationController
 
   def house_food_params
     params.require(:house_food).permit( :food_id, :amount, :bought_date, :expiry_date)
+  end
+
+  def from_shopping_list?
+    params[:food_id].present?
   end
 end
