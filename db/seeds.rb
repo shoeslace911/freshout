@@ -20,7 +20,7 @@ puts "Shopping list created"
     comment: '',
     amount: rand(1..4),
     owned: true,
-    photo: file
+    # photo: file
   )
 
   puts "Created #{house_food.food.name} as a house food."
