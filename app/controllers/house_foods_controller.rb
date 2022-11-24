@@ -49,7 +49,6 @@ class HouseFoodsController < ApplicationController
     elsif @house_food.save
       redirect_to house_foods_path
     else
-      raise
       render :new, status: :unprocessable_entity
     end
   end
