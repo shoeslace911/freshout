@@ -1,23 +1,23 @@
-<% @foods.each do |food|  %>
+<% @foods.each do |house_food|  %>
 <div class="card-link">
-  <%= link_to house_food_path(food), class: 'links'  do%>
+  <%= link_to house_food_path(house_food), class: 'links'  do%>
     <%# test the ternary if statement when the house food create starts working %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path(food.food.photo.key)%>)" id="<%= (food.expiry_date - Date.today).to_i %>">
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path(house_food.food.photo.key)%>)" id="<%= (house_food.expiry_date - Date.today).to_i %>">
       <div class="icon">
         <i class="fa-solid fa-triangle-exclamation" id="warning"></i>
       </div>
       <div class="card-details">
-        <% if food.amount > 1 %>
-          <h5><%= food.amount %> <%= food.food.name %>s</h5>
+        <% if house_food.amount > 1 %>
+          <h5><%= house_food.amount %> <%= house_food.food.name %>s</h5>
         <% else %>
-          <h5><%= food.amount %> <%= food.food.name %></h5>
+          <h5><%= house_food.amount %> <%= house_food.food.name %></h5>
         <% end %>
-        <h6><%= (food.expiry_date - Date.today).to_i %> Days left</h6>
+        <h6><%= (house_food.expiry_date - Date.today).to_i %> Days left</h6>
       </div>
       <% end %>
       </div>
       <div class="delete">
-        <%= link_to house_food_path(food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
+        <%= link_to house_food_path(house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
           <i class="fa-solid fa-square-minus"></i>
         <% end %>
       </div>
