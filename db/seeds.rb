@@ -61,7 +61,7 @@ end
 puts "Foods created"
 
 foods = Food.all
-10.times do
+12.times do
   food = foods.sample
   house_food = HouseFood.create!(
     food: food,
@@ -81,9 +81,10 @@ end
 puts "House foods created"
 
 6.times do
-  Item.create(
+  Item.create!(
     shopping_list: ShoppingList.first,
-    food: foods.sample
+    food: Food.all.sample,
+    amount: 6
   )
 end
 puts "Items created"
