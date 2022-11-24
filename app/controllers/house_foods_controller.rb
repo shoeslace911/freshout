@@ -13,6 +13,7 @@ class HouseFoodsController < ApplicationController
 
   def show
     @house_food = HouseFood.find(params[:id])
+
     authorize @house_food
   end
 
@@ -56,6 +57,6 @@ class HouseFoodsController < ApplicationController
   private
 
   def house_food_params
-    params.require(:house_food).permit( :food_id, :amount, :photo, :bought_date, :expiry_date)
+    params.require(:house_food).permit( :food_id, :amount, :bought_date, :expiry_date)
   end
 end
