@@ -9,9 +9,9 @@ class HouseFood < ApplicationRecord
   validates :expiry_date, presence: true
 
   include PgSearch::Model
-  pg_search_scope :search,
+  pg_search_scope :search_for_name_and_category,
   associated_against: {
-    food: [:name]
+    food: [:name, :category]
   },
   using: {
     tsearch: { prefix: true }
