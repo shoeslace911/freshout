@@ -2,7 +2,7 @@
   <h1 class="text-center my-2">ADD NEW FOOD</h1>
   <%= simple_form_for @house_food  do |f| %>
     <%#= f.association :food, %>
-    <%= f.input :food, collection: @foods, input_html: {data: {controller: "tom-select"}} %>
+    <%= f.input :food_id, collection: @foods, input_html: {data: {controller: "tom-select"}} %>
     <%= f.input :amount, :class => "new_food_input" %>
     <%= f.input :bought_date %>
     <%= f.input :expiry_date %>

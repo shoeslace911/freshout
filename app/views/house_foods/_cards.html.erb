@@ -16,6 +16,7 @@
         </div>
       <% end %>
     </div>
+  <% end %>
     <div class="delete">
       <%= link_to house_food_path(house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
         <i class="fa-solid fa-square-minus"></i>
