@@ -8,10 +8,11 @@
       </div>
       <div class="card-details">
         <% if food.amount > 1 %>
-          <h4><%= food.amount %> <%= food.food.name %>s</h4>
+          <h5><%= food.amount %> <%= food.food.name %>s</h5>
         <% else %>
-          <h4><%= food.amount %> <%= food.food.name %></h4>
+          <h5><%= food.amount %> <%= food.food.name %></h5>
         <% end %>
+        <h6><%= (food.expiry_date - Date.today).to_i %> Days left</h6>
       </div>
       <% end %>
       </div>
