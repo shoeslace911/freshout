@@ -1,0 +1,6 @@
+<%= simple_form_for [item.food, house_food] do |f| %>
+  <%= f.input :amount %>
+  <%= f.submit do %>
+    <i class=“fa-solid fa-plus”></i>
+  <% end %>
+<% end %>
