@@ -19,7 +19,8 @@ puts "Shopping list created"
     expiry_date: Faker::Date.between(from: '2023-01-04', to: '2023-01-08'),
     comment: '',
     amount: rand(1..4),
-    owned: true
+    owned: true,
+    photo: file
   )
 
   puts "Created #{house_food.food.name} as a house food."
