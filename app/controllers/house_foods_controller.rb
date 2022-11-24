@@ -40,9 +40,7 @@ class HouseFoodsController < ApplicationController
       @house_food = HouseFood.new(house_food_params)
     end
     @house_food.house = current_user.house
-
     authorize @house_food
-
     # this is when the food is created from inventory
     if from_shopping_list? && @house_food.save
       item = Item.find(params[:item_id].to_i)
@@ -51,6 +49,7 @@ class HouseFoodsController < ApplicationController
     elsif @house_food.save
       redirect_to house_foods_path
     else
+      raise
       render :new, status: :unprocessable_entity
     end
   end
