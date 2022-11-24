@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       patch :eat
     end
   end
+  resources :foods, only: [] do
+    resources :house_foods, only: :create
+  end
   # Defines the root path route ("/")
   # root "articles#index"
 end
