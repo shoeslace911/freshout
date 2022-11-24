@@ -10,13 +10,31 @@ require "open-uri"
 
 puts 'Destroying previous seeds...'
 Food.destroy_all
+puts "Food destroyed"
+
 House.destroy_all
+puts "House destroyed"
+
 HouseFood.destroy_all
+puts "House food destroyed"
+
+ShoppingList.destroy_all
+puts "Shopping list destroyed"
+
+Item.destroy_all
+puts "Item destroyed."
 
 puts 'Creating seeds...'
+
 House.create!(
   name: "Will's house"
 )
+puts "House created"
+
+ShoppingList.create!(
+  house: House.first
+)
+puts "Shopping list created"
 
 fruits_list = ['Pineapple', 'Banana', 'Orange', 'Grape', 'Apple', 'Strawberry', 'Kiwi', 'Melon']
 vegetables_list = ['Potato', 'Carrot', 'Letuce', 'Cabbage', 'Peppers', 'Onion', 'Broccoli', 'Cucumber']
@@ -40,6 +58,7 @@ vegetables_list = ['Potato', 'Carrot', 'Letuce', 'Cabbage', 'Peppers', 'Onion', 
   fruits.save!
   vegetables.save!
 end
+puts "Foods created"
 
 foods = Food.all
 10.times do
@@ -59,9 +78,19 @@ foods = Food.all
 
   foods -= [food]
 end
+puts "House foods created"
+
+6.times do
+  Item.create(
+    shopping_list: ShoppingList.first,
+    food: foods.sample
+  )
+end
+puts "Items created"
 
 # House has to exist before user, this is a problem
 User.create!(username: 'will_hargrave', email: 'will@will.com', password: 123456, house: House.first)
 User.create!(username: 'sho_fujiwara', email: 'sho@sho.com', password: 123456, house: House.first)
+puts "Users created"
 
-puts "Created #{Food.count} foods, #{House.count} houses, #{HouseFood.count} house foods, #{User.count} users."
+puts "Created #{Food.count} foods, #{House.count} houses, #{HouseFood.count} house foods, #{User.count} users, #{ShoppingList.count} shopping list, #{Item.count} items."
