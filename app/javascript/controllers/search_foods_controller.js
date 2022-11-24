@@ -16,5 +16,4 @@ export default class extends Controller {
       this.cardsTarget.innerHTML = data
     })
   }
-
 }

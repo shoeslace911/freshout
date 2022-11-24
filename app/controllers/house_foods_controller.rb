@@ -1,9 +1,9 @@
 class HouseFoodsController < ApplicationController
   def index
     if params[:query].present?
-      @foods = policy_scope(HouseFood).search_for_name_and_category(params[:query]).order("expiry_date ASC")
+      @foods = policy_scope(HouseFood).search_for_name_and_category(params[:query]).order("expiry_date")
     else
-      @foods = policy_scope(HouseFood).order("expiry_date ASC")
+      @foods = policy_scope(HouseFood).order("expiry_date")
     end
     respond_to do |format|
       format.html # Follow regular flow of Rails
@@ -13,12 +13,14 @@ class HouseFoodsController < ApplicationController
 
   def show
     @house_food = HouseFood.find(params[:id])
+
     authorize @house_food
   end
 
   def new
     @house_food = HouseFood.new
     authorize @house_food
+    @foods = Food.order("name")
   end
 
   def create
@@ -70,7 +72,7 @@ class HouseFoodsController < ApplicationController
   private
 
   def house_food_params
-    params.require(:house_food).permit( :food_id, :amount, :photo, :bought_date, :expiry_date)
+    params.require(:house_food).permit( :food_id, :amount, :bought_date, :expiry_date)
   end
 
   def from_shopping_list?
