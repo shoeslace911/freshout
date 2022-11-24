@@ -23,8 +23,12 @@ class HouseFoodsController < ApplicationController
 
   def create
     @house_food = HouseFood.new(house_food_params)
-    food = Food.find(house_food_params[:food_id])
-    @house_food.food = food
+    # if the create is coming from the shopping list
+    # otherwise, the food is submitted in the form
+    if params[:food_id].present?
+      food = Food.find(params[:food_id])
+      @house_food.food = food
+    end
     @house_food.house = current_user.house
     authorize @house_food
     if @house_food.save
