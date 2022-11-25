@@ -88,11 +88,19 @@
 [id="1"] {
   border: solid 5px rgba(217, 4, 4, 0.848);
 }
+
+[id="0"] {
+  border: solid 5px rgba(217, 4, 4, 0.848);
+}
 #warning {
   opacity: 0;
   color: red;
 }
 [id="1"] #warning {
+  opacity: 1;
+}
+
+[id="0"] #warning {
   opacity: 1;
 }
 
