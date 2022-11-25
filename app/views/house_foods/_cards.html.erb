@@ -8,9 +8,9 @@
         </div>
         <div class="card-details">
           <% if house_food.amount > 1 %>
-            <h5><%= house_food.amount %> <%= house_food.food.name %>s</h5>
+            <h5><%= house_food.food.name.pluralize %></h5>
           <% else %>
-            <h5><%= house_food.amount %> <%= house_food.food.name %></h5>
+            <h5><%= house_food.food.name %></h5>
           <% end %>
           <h6><%= (house_food.expiry_date - Date.today).to_i %> Days left</h6>
         </div>
