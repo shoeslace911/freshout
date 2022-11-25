@@ -10,8 +10,8 @@
           <% if house_food.amount > 1 %>
             <h5>
               <%= house_food.amount %>
-              <%= house_food.measurement  %> <br>
-              <%= house_food.food.name %>s
+              <%= house_food.measurement.pluralize  %> of
+              <%= house_food.food.name.pluralize  %>
             </h5>
           <% else %>
             <h5><%= house_food.food.name %></h5>
