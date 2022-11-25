@@ -9,17 +9,35 @@ class ItemsController < ApplicationController
     end
   end
 
+  def new
+    @item = Item.new
+    @foods = Food.order("name")
+    authorize @item
+  end
+
   def create
     @item = Item.new(item_params)
     @item.shopping_list = current_user.house.shopping_lists.first
-    @item.amount = 1
     authorize @item
-    @item.save
+    if params[:item]
+      @item.amount = params[:item][:amount]
+      @item.food = Food.find(params[:item][:food_id])
+      if @item.save
+        redirect_to shopping_list_path(@item.shopping_list)
+      else
+        render :new, status: :unprocessable_entity
+      end
+    else
+      @item.amount = 1
+      @item.food = Food.find(params[:food_id])
+      @item.save
+    end
   end
 
   private
 
   def item_params
+    # params.require(:item).permit(:food_id, :amount, :measurement)
     params.permit(:food_id)
   end
 end
