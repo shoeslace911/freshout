@@ -1,8 +1,9 @@
 <div class="container">
   <h1 class="text-center my-2">ADD NEW ITEM</h1>
-  <%= simple_form_for @item  do |f| %>
+  <%= simple_form_for @item do |f| %>
     <%#= f.association :food, %>
     <%= f.input :food_id, collection: @foods, input_html: {data: {controller: "tom-select"}} %>
+    <%= f.input :amount %>
     <%= f.input :measurement, collection: HouseFood::MEASUREMENT %>
     <%= f.submit  %>
   <% end %>
