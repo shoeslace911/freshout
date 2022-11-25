@@ -20,9 +20,10 @@
         </div>
       <% end %>
     </div>
-    <div class="delete">
+    <div class="d-flex position-absolute top-0 end-0">
       <%= link_to house_food_path(house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
-        <i class="fa-solid fa-square-minus"></i>
+        <i class="fa-solid fa-minus"></i>
+        <%# <i class="fa-solid fa-square-minus"></i> %>
       <% end %>
     </div>
   </div>
