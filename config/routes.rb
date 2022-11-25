@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :foods, only: [] do
     resources :house_foods, only: :create
   end
-  resources :items, only: [:destroy, :create]
+  resources :items, only: %i[destroy create]
   # Defines the root path route ("/")
   # root "articles#index"
 end

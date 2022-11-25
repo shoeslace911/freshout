@@ -13,7 +13,8 @@ class HouseFoodsController < ApplicationController
 
   def show
     @house_food = HouseFood.find(params[:id])
-
+    @item = Item.new
+    @food = @house_food.food
     authorize @house_food
   end
 
