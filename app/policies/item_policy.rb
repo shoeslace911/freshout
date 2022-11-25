@@ -5,7 +5,12 @@ class ItemPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+
   def destroy?
+    true
+  end
+
+  def create?
     true
   end
 end
