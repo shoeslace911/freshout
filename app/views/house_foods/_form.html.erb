@@ -1,5 +1,7 @@
 <%= simple_form_for [item.food, house_food] do |f| %>
   <%= hidden_field_tag :amount, item.amount %>
   <%= hidden_field_tag :item_id, item.id %>
-  <%= submit_tag '+', type: 'submit', class: 'eat-button-shopping-list' %>
+  <%= f.button :button, class: 'button-shopping-list' do %>
+  <i class="fa-solid fa-plus"></i>
+  <% end %>
 <% end %>
