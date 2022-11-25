@@ -71,7 +71,7 @@ class HouseFoodsController < ApplicationController
   private
 
   def house_food_params
-    params.require(:house_food).permit( :food_id, :amount, :bought_date, :expiry_date)
+    params.require(:house_food).permit( :food_id, :amount, :bought_date, :expiry_date, :measurement )
   end
 
   def from_shopping_list?

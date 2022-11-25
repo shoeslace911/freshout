@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_24_054725) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_25_030349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_054725) do
     t.boolean "owned"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "measurement"
     t.index ["food_id"], name: "index_house_foods_on_food_id"
     t.index ["house_id"], name: "index_house_foods_on_house_id"
   end
