@@ -9,6 +9,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def new
+    @item = Item.new
+  end
+
   def create
     @item = Item.new(item_params)
     @item.shopping_list = current_user.house.shopping_lists.first
