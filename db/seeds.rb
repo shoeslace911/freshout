@@ -19,6 +19,7 @@ puts "Shopping list created"
     bought_date: Faker::Date.between(from: '2023-01-01', to: '2023-01-04'),
     expiry_date: Faker::Date.between(from: '2023-01-04', to: '2023-01-08'),
     comment: '',
+    measurement: "",
     amount: rand(1..4),
     owned: true
   )

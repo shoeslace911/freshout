@@ -8,7 +8,8 @@
         </div>
         <div class="card-details">
           <% if house_food.amount > 1 %>
-            <h5><%= house_food.amount %> <%= house_food.food.name %>s</h5>
+            <h5><%= house_food.amount %> <%= house_food.measurement  %>  <br>
+              <%= house_food.food.name %>s</h5>
           <% else %>
             <h5><%= house_food.amount %> <%= house_food.food.name %></h5>
           <% end %>

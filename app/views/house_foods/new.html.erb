@@ -4,6 +4,7 @@
     <%#= f.association :food, %>
     <%= f.input :food_id, collection: @foods, input_html: {data: {controller: "tom-select"}} %>
     <%= f.input :amount, :class => "new_food_input" %>
+    <%= f.input :measurement, collection: HouseFood::MEASUREMENT %>
     <%= f.input :bought_date %>
     <%= f.input :expiry_date %>
     <%= f.submit  %>

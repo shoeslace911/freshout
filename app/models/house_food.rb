@@ -8,6 +8,8 @@ class HouseFood < ApplicationRecord
   validates :bought_date, presence: true
   validates :expiry_date, presence: true
 
+  MEASUREMENT = ["bags", "bottles", "sacks", "loaf", "carton", "cans", "jars"]
+
   include PgSearch::Model
   pg_search_scope :search_for_name_and_category,
   associated_against: {
