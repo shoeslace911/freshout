@@ -1,14 +1,15 @@
 <div class="text-center mt-3" data-controller="toast">
   <div class="mb-3">
-    <div class="d-flex justify-content-center gap-3" >
-      <h1 class="d-inline"><%= @house_food.food.name %></h1>
+    <div class="d-flex justify-content-between gap-3" >
+      <div class="invisible">Egg</div>
+      <h1 class="d-inline"><%= @house_food.food.name.capitalize %></h1>
       <div class="d-flex align-items-center">
-        <%= link_to house_food_path(@house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
-          <i class="fa-solid fa-trash"></i>
-        <% end %>
+        <%#= link_to house_food_path(@house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
+          <!--<i class="fa-solid fa-minus"></i> -->
+        <%# end %>
         <%= simple_form_for @house_food, url: eat_house_food_path do |f| %>
           <%= button_tag type: 'submit', class: 'eat-button' do %>
-            <i class="fa-solid fa-utensils mx-1"></i>
+            <i class="fa-solid fa-utensils"></i>
           <% end %>
         <% end %>
       </div>
