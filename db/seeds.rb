@@ -13,7 +13,7 @@ puts "Shopping list created"
 
 10.times do
   foods = Food.all.uniq.sample
-  house_food = HouseFood.where(food: foods).find_or_create_by(
+  HouseFood.where(food: foods).find_or_create_by(
     food: foods,
     house: House.first,
     bought_date: Faker::Date.between(from: '2023-01-01', to: '2023-01-04'),
@@ -23,7 +23,7 @@ puts "Shopping list created"
     owned: true
   )
 
-  puts "Created #{house_food.food.name} as a house food."
+  # puts "Created #{house_food.name} as a house food."
 end
 puts "House foods created"
 
