@@ -39,6 +39,7 @@ Rails.application.configure do
   config.hosts.clear
   config.hosts << ".loca.lt"
   config.hosts << "localhost"
+  config.hosts << "http://www.freshout.world/"
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

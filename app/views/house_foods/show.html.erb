@@ -23,9 +23,15 @@
       <%= hidden_field_tag :food_id, @house_food.food.id %>
       <%= submit_tag 'Add to cart', type: 'submit', class: 'eat-button' %>
     <% end %>
-    <p>Bought: <%= @house_food.bought_date %></p>
-    <p>Expire: <%= @house_food.expiry_date %></p>
-    <p>Category: <%= @house_food.food.category %></p>
+    <p>Bought: <%= (Date.today - @house_food.bought_date).to_i %> days ago</p>
+    <p>Expires in: <%= (@house_food.expiry_date - Date.today).to_i %> days</p>
+    <%= simple_form_for @house_food, url: add_house_food_path do |f| %>
+          <%= button_tag type: 'submit' do |f|%>
+          Add three days
+          <% end %>
+    <% end %>
+
+    <p>Category: <%= @house_food.food.category.capitalize %></p>
     <p>Quantity: <%= @house_food.amount %> <%= @house_food.measurement  %></p>
   </div>
 </div>
