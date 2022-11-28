@@ -18,10 +18,12 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.shopping_list = current_user.house.shopping_lists.first
+    @item.user = current_user
     authorize @item
     if params[:item]
       @item.amount = params[:item][:amount]
       @item.food = Food.find(params[:item][:food_id])
+      @item.comment = params[:item][:comment]
       if @item.save
         redirect_to shopping_list_path(@item.shopping_list)
       else
@@ -38,6 +40,6 @@ class ItemsController < ApplicationController
 
   def item_params
     # params.require(:item).permit(:food_id, :amount, :measurement)
-    params.permit(:food_id)
+    params.permit(:food_id, :comment)
   end
 end
