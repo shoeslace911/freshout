@@ -8,7 +8,7 @@ class HouseFood < ApplicationRecord
   validates :bought_date, presence: true
   validates :expiry_date, presence: true
 
-  MEASUREMENT = ["bags", "bottles", "sacks", "loaf", "carton", "cans", "jars"]
+  MEASUREMENT = ["bag", "bottle", "sack", "loaf", "carton", "can", "jar", "piece", "pint", "slice", "pack", "rash", "bunch", "gram", "ounce", "millimetre", "fluid ounce"]
 
   include PgSearch::Model
   pg_search_scope :search_for_name_and_category,

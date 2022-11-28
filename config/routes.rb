@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :house_foods do
     member do
       patch :eat
+      patch :add
     end
   end
   resources :foods, only: [] do
