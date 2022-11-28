@@ -5,7 +5,11 @@
   <div>
     <% @items.each do |item| %>
       <div class="card-product mt-3 position-relative">
+      <% if item.food.photo.attached? %>
         <%= cl_image_tag item.food.photo.key, alt: "text" %>
+        <% else %>
+         <%= image_tag 'no-image.jpg' %>
+         <% end %>
         <div class="card-product-infos">
           <h1><%= item.food.name.capitalize %></h1>
           <div class="d-flex position-absolute top-0 end-0">
