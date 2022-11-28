@@ -22,8 +22,6 @@ class HouseFoodsController < ApplicationController
     @house_food = HouseFood.new
     authorize @house_food
     @foods = Food.order("name")
-    # @lines = Ocr.total("https://res.cloudinary.com/dzhd9t08o/image/upload/v1669608135/receipt_kyyfkn.heic")
-    raise
   end
 
   def create
@@ -76,6 +74,12 @@ class HouseFoodsController < ApplicationController
     authorize @house_food
     redirect_to house_food_path(@house_food) if @house_food.save
   end
+
+  def scan
+    @lines = Ocr.extract_text("https://thepeacefulmom.com/wp-content/uploads/2020/10/75-Budget-Grocery-receipt-2020-10-15-copyright-2020-The-Peaceful-Mom.jpg")
+    raise
+  end
+
   private
 
   def house_food_params

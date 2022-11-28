@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
+  post '/scan', to: 'house_foods#scan'
   resources :shopping_lists, only: [:show]
   resources :house_foods do
     member do

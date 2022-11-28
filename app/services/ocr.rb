@@ -6,7 +6,6 @@ class Ocr
     vision = Google::Cloud::Vision.image_annotator
     image = vision.text_detection(image: URI.open(file_path))
     text = image.responses.first.text_annotations.first.description.split("\n").map(&:downcase).map(&:capitalize)
-    debugger
     # {
     #   first_name: text[4].split[2].capitalize,
     #   last_name: text[4].split[1].capitalize,
