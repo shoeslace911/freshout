@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_25_050607) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_025038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,8 +77,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_050607) do
     t.datetime "updated_at", null: false
     t.integer "amount"
     t.string "measurement"
+    t.text "comment"
+    t.bigint "user_id"
     t.index ["food_id"], name: "index_items_on_food_id"
     t.index ["shopping_list_id"], name: "index_items_on_shopping_list_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "shopping_lists", force: :cascade do |t|
@@ -109,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_050607) do
   add_foreign_key "house_foods", "houses"
   add_foreign_key "items", "foods"
   add_foreign_key "items", "shopping_lists"
+  add_foreign_key "items", "users"
   add_foreign_key "shopping_lists", "houses"
   add_foreign_key "users", "houses"
 end
