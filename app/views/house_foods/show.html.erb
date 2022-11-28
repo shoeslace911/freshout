@@ -1,15 +1,18 @@
 <div class="text-center mt-3" data-controller="toast">
   <div class="mb-3">
-    <div class="d-flex justify-content-center gap-3" >
-      <h1 class="d-inline"><%= @house_food.food.name %></h1>
+    <div class="d-flex justify-content-between gap-3" >
+      <div class="invisible">Egg</div>
+      <h1 class="d-inline"><%= @house_food.food.name.capitalize %></h1>
       <div class="d-flex align-items-center">
-        <%= link_to house_food_path(@house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
-          <i class="fa-solid fa-trash"></i>
-        <% end %>
+        <%#= link_to house_food_path(@house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
+          <!--<i class="fa-solid fa-minus"></i> -->
+        <%# end %>
+        <% if @house_food.amount > 1 %>
         <%= simple_form_for @house_food, url: eat_house_food_path do |f| %>
           <%= button_tag type: 'submit', class: 'eat-button' do %>
-            <i class="fa-solid fa-utensils mx-1"></i>
+            <i class="fa-solid fa-utensils"></i>
           <% end %>
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -18,14 +21,19 @@
     <% else %>
       <%= image_tag 'no-image.jpg', alt: "text", class: 'my-3 d-block', style: 'width: 80%; height: 40vh; object-fit: cover; border-radius: 4px; margin: 0 auto;' %>
     <% end %>
-    <%= simple_form_for([@item], data: { action: 'submit->toast#addedToShoppingList', toast_target: 'form'}) do |f| %>
+    <%= simple_form_for([@item], data: { action: 'submit->toast#addedToShoppingList', toast_target: 'form'})  do |f| %>
       <%= hidden_field_tag :food_id, @house_food.food.id %>
-      <%= hidden_field_tag :item_amount, 1 %>
       <%= submit_tag 'Add to cart', type: 'submit', class: 'eat-button' %>
     <% end %>
-    <p>Bought: <%= @house_food.bought_date %></p>
-    <p>Expire: <%= @house_food.expiry_date %></p>
-    <p>Category: <%= @house_food.food.category %></p>
+    <p>Bought: <%= (Date.today - @house_food.bought_date).to_i %> days ago</p>
+    <p>Expires in: <%= (@house_food.expiry_date - Date.today).to_i %> days</p>
+    <%= simple_form_for @house_food, url: add_house_food_path do |f| %>
+          <%= button_tag type: 'submit' do |f|%>
+          Add three days
+          <% end %>
+    <% end %>
+
+    <p>Category: <%= @house_food.food.category.capitalize %></p>
     <p>Quantity: <%= @house_food.amount %> <%= @house_food.measurement  %></p>
     <p>Comments: <%= @house_food.comment  %></p>
   </div>

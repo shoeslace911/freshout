@@ -1,13 +1,28 @@
-<h1 class="text-center mt-3">Shopping List</h1>
-<% @items.each do |item| %>
-  <div class="card-product mt-3 position-relative">
-    <%= cl_image_tag item.food.photo.key, alt: "text" %>
-    <div class="card-product-infos">
-      <h1><%= item.food.name.capitalize %></h1>
-      <div class="d-flex position-absolute top-0 end-0">
-      <%= render 'house_foods/form', item: item, house_food: @house_food %>
-      <%= render 'destroy_item', item: item %>
+<div class="container">
+  <h1 class="text-center mt-3">Shopping List<%= link_to new_item_path, class: 'text-decoration-none'  do%>
+      <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
+    <% end %></h1>
+  <div>
+    <% @items.each do |item| %>
+      <div class="card-product mt-3 position-relative">
+      <% if item.food.photo.attached? %>
+        <%= cl_image_tag item.food.photo.key, alt: "text" %>
+        <% else %>
+         <%= image_tag 'no-image.jpg' %>
+         <% end %>
+        <div class="card-product-infos">
+        <% if item.user.present? %>
+        <p><%= item.user.username.capitalize%></p>
+        <% end %>
+          <h1><%= item.food.name.capitalize %></h1>
+          <div class="d-flex position-absolute top-0 end-0">
+            <%= render 'house_foods/form', item: item, house_food: @house_food %>
+            <%= render 'destroy_item', item: item %>
+          </div>
+          <div>
+          <p><%= item.comment %></p>
+          </div>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
-<% end %>

@@ -2,17 +2,10 @@
   border: none;
   background-color: #F4F4F4;
   color: #4EC068;
+  font-size: 24px;
 }
 
 .delete-button {
-  color: #4EC068;
-
-  &:hover {
-    color: #4EC068;
-  }
-}
-
-.button-shopping-list {
   color: #F4F4F4;
   border: none;
   background-color: #4EC068;
@@ -23,4 +16,19 @@
   text-align: center;
   margin-right: 8px;
   margin-top: 8px;
+  border-radius: 5px;
+}
+
+.button-shopping-list {
+  color: #F4F4F4 !important;
+  border: none;
+  background-color: #4EC068 !important;
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  text-align: center;
+  margin-right: 8px;
+  margin-top: 8px;
+  border-radius: 5px;
 }

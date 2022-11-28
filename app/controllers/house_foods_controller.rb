@@ -67,7 +67,13 @@ class HouseFoodsController < ApplicationController
     authorize @house_food
     redirect_to house_food_path(@house_food) if @house_food.save
   end
-
+  
+  def add
+    @house_food = HouseFood.find(params[:id])
+    @house_food.expiry_date += 3
+    authorize @house_food
+    redirect_to house_food_path(@house_food) if @house_food.save
+  end
   private
 
   def house_food_params

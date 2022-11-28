@@ -5,11 +5,12 @@ export default class extends Controller {
   static targets = ['form']
   connect() {
     console.log('Controller connected');
-    console.log(this.formTarget.action)
-    console.log(this.formTarget)
+    // console.log(this.formTarget.action)
+    // console.log(this.formTarget)
   }
   addedToShoppingList(event) {
     event.preventDefault();
+    console.log(this.formTarget.action);
     fetch(this.formTarget.action, {
       method: "POST",
       body: new FormData(this.formTarget)

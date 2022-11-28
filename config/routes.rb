@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   resources :house_foods do
     member do
       patch :eat
+      patch :add
     end
   end
   resources :foods, only: [] do
     resources :house_foods, only: :create
   end
-  resources :items, only: %i[destroy create]
+  resources :items, only: %i[destroy create new]
   # Defines the root path route ("/")
   # root "articles#index"
 end

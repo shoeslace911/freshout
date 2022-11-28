@@ -10,8 +10,10 @@
           <% if house_food.amount > 1 %>
             <h5>
               <%= house_food.amount %>
-              <%= house_food.measurement %> <br>
-              <%= house_food.food.name %>s
+              <% if house_food.measurement.present? %>
+              <%= house_food.measurement.pluralize %> of
+              <% end %>
+              <%= house_food.food.name.pluralize  %>
             </h5>
           <% else %>
             <h5><%= house_food.food.name %></h5>
@@ -20,9 +22,10 @@
         </div>
       <% end %>
     </div>
-    <div class="delete">
+    <div class="d-flex position-absolute top-0 end-0">
       <%= link_to house_food_path(house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
-        <i class="fa-solid fa-square-minus"></i>
+        <i class="fa-solid fa-minus"></i>
+        <%# <i class="fa-solid fa-square-minus"></i> %>
       <% end %>
     </div>
   </div>

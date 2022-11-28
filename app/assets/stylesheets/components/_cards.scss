@@ -12,6 +12,7 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 8px;
 }
 
 .card-details {
@@ -61,7 +62,7 @@
   }
 }
 .links {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   text-decoration: none;
 }
 
@@ -87,11 +88,19 @@
 [id="1"] {
   border: solid 5px rgba(217, 4, 4, 0.848);
 }
+
+[id="0"] {
+  border: solid 5px rgba(217, 4, 4, 0.848);
+}
 #warning {
   opacity: 0;
   color: red;
 }
 [id="1"] #warning {
+  opacity: 1;
+}
+
+[id="0"] #warning {
   opacity: 1;
 }
 
