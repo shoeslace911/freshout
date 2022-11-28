@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container" onload="markAsRead()">
   <h1 class="text-center mt-3">Shopping List<%= link_to new_item_path, class: 'text-decoration-none'  do%>
       <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
     <% end %></h1>
   <div>
     <% @items.each do |item| %>
-      <div class="card-product mt-3 position-relative">
+      <div class="card-product mt-3 position-relative" id="item">
       <% if item.food.photo.attached? %>
         <%= cl_image_tag item.food.photo.key, alt: "text" %>
         <% else %>
