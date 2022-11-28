@@ -7,10 +7,12 @@
         <%#= link_to house_food_path(@house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
           <!--<i class="fa-solid fa-minus"></i> -->
         <%# end %>
+        <% if @house_food.amount > 1 %>
         <%= simple_form_for @house_food, url: eat_house_food_path do |f| %>
           <%= button_tag type: 'submit', class: 'eat-button' do %>
             <i class="fa-solid fa-utensils"></i>
           <% end %>
+        <% end %>
         <% end %>
       </div>
     </div>
