@@ -1,6 +1,7 @@
 # To deliver this notification:
 #
-notif = FoodNotification.with(amount: ).deliver(current_user)
+# FoodNotification.with(post: @post).deliver_later(current_user)
+notif = FoodNotification.with().deliver(current_user)
 notif.FoodNotification.deliver_later(User.all)
 
 class FoodNotification < Noticed::Base
@@ -11,12 +12,14 @@ class FoodNotification < Noticed::Base
   # deliver_by :email, mailer: "UserMailer"
   # deliver_by :slack
   # deliver_by :custom, class: "MyDeliveryMethod"
-
   # Add required params
-
+  param :post
 
   # Define helper methods to make rendering easier.
   #
+  def to_database
+
+  end
   # def message
   #   t(".message")
   # end
