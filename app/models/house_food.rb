@@ -7,7 +7,7 @@ class HouseFood < ApplicationRecord
   # the food table itself
   validates :amount, presence: true
   validates :bought_date, presence: true
-  # validates :expiry_date, presence: true,
+ 
   MEASUREMENT = ["bag", "bottle", "sack", "loaf", "carton", "can", "jar", "piece", "pint", "slice", "pack", "rash", "bunch", "gram", "ounce", "millimetre", "fluid ounce"]
 
   include PgSearch::Model
