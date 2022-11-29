@@ -28,4 +28,8 @@ class HouseFoodPolicy < ApplicationPolicy
   def add?
     true
   end
+
+  def scan?
+    true
+  end
 end
