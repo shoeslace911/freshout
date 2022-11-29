@@ -22,6 +22,7 @@ class HouseFoodsController < ApplicationController
     @house_food = HouseFood.new
     authorize @house_food
     @foods = Food.order("name")
+    # @foods.
   end
 
   def create
@@ -41,6 +42,8 @@ class HouseFoodsController < ApplicationController
       @house_food = HouseFood.new(house_food_params)
     end
     @house_food.house = current_user.house
+    # can make user modify?
+    @house_food.expiry_date = Date.today + @house_food.food.expiry_days
     authorize @house_food
     # this is when the food is created from inventory
     if from_shopping_list? && @house_food.save
@@ -67,7 +70,7 @@ class HouseFoodsController < ApplicationController
     authorize @house_food
     redirect_to house_food_path(@house_food) if @house_food.save
   end
-  
+
   def add
     @house_food = HouseFood.find(params[:id])
     @house_food.expiry_date += 3
