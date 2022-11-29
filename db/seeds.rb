@@ -22,8 +22,8 @@ puts "Shopping list created"
   HouseFood.create!(
     food: foods,
     house: House.first,
-    bought_date: Faker::Date.between(from: '2023-01-01', to: '2023-01-04'),
-    expiry_date: Faker::Date.between(from: '2023-01-04', to: '2023-01-08'),
+    bought_date: Faker::Date.between(from: Date.today, to: '2022-12-31'),
+    expiry_date: Faker::Date.between(from: '2022-12-01', to: '2022-12-31'),
     comment: '',
     measurement: "bag",
     amount: rand(1..4),
@@ -41,7 +41,8 @@ User.create!(username: 'sho_fujiwara', email: 'sho@sho.com', password: 123456, h
     shopping_list: ShoppingList.first,
     food: Food.all.sample,
     amount: 6,
-    user: User.all.sample
+    user: User.all.sample,
+    seen: false
   )
 end
 puts "Items created"

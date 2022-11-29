@@ -9,6 +9,7 @@ class HouseFoodsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: "house_foods/cards", locals: { foods: @foods }, formats: [:html] }
     end
+    
   end
 
   def show
@@ -67,7 +68,7 @@ class HouseFoodsController < ApplicationController
     authorize @house_food
     redirect_to house_food_path(@house_food) if @house_food.save
   end
-  
+
   def add
     @house_food = HouseFood.find(params[:id])
     @house_food.expiry_date += 3
