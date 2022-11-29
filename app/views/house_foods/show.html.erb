@@ -33,7 +33,7 @@
         <% end %>
       <% end %>
       <p>Category: <%= @house_food.food.category.capitalize %></p>
-      <% if house_food.measurement.present? %>
+      <% if @house_food.measurement.present? %>
         <p>Quantity: <%= @house_food.amount %> <%= @house_food.measurement  %></p>
       <% end %>
     </div>
