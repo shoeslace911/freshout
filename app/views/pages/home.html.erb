@@ -3,18 +3,15 @@
     <div class="d-flex flex-column justify-content-around mt-3 text-center">
       <div>
         <h1>FRESHOUT</h1>
+
         <p class="mt-3 px-2">Keep track of your kitchen’s food and stop wasting food</p>
       </div>
-      <ul class="notification-container d-flex justify-content-center">
-        <div class="cards w-75 ">
-          <%= render "house_foods/cards" %>
-        </div>
-      </ul>
       <div class="d-flex flex-column align-items-center gap-2">
-         <% if @items.any? %>
-          <%= link_to "Someone added an item!", shopping_list_path(current_user.house.shopping_lists.first), class: "button"%>
+        <% if @foods.any?  %>
+           <%= link_to "Inventory" , house_foods_path, class: "warning-button" %>
+           <% else %>
+           <%= link_to "Inventory", house_foods_path, class: "button" %>
         <% end %>
-        <%= link_to "Inventory", house_foods_path, class: "button" %>
         <%= link_to "Scan", new_house_food_path, class: "button" %>
       </div>
     </div>
