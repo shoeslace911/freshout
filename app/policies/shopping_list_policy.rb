@@ -9,4 +9,8 @@ class ShoppingListPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def store_all?
+    true
+  end
 end

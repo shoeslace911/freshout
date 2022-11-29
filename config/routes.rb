@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :shopping_lists, only: [:show]
+  resources :shopping_lists, only: [:show] do
+    member do
+      patch :store_all
+    end
+  end
   resources :house_foods do
     member do
       patch :eat
