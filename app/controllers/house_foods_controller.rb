@@ -76,8 +76,33 @@ class HouseFoodsController < ApplicationController
   end
 
   def scan
-    @lines = Ocr.extract_text("https://thepeacefulmom.com/wp-content/uploads/2020/10/75-Budget-Grocery-receipt-2020-10-15-copyright-2020-The-Peaceful-Mom.jpg")
-    raise
+    uploading_picture = Cloudinary::Uploader.upload(params[:photo].path)
+    @lines = Ocr.extract_text(uploading_picture["secure_url"])
+    @foods = Food.all
+    mapped_foods = @foods.map do |food|
+      food.name.downcase
+    end
+    bought_foods = []
+    @lines.each do |line|
+      puts line.downcase
+      if mapped_foods.include?(line.downcase)
+        food = Food.where('name ILIKE ?', "#{line.downcase}").first
+        bought_foods.push(food)
+      end
+    end
+    bought_foods.each do |bought_food|
+      @house_food = HouseFood.new(
+        food_id: bought_food.id,
+        amount: 1,
+        bought_date: Date.today,
+        expiry_date: Date.today + 7,
+        house: current_user.house,
+        owned: true
+      )
+      authorize @house_food
+      @house_food.save
+    end
+    redirect_to house_foods_path
   end
 
   private

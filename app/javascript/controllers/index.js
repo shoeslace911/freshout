@@ -15,3 +15,6 @@ application.register("toast", ToastController)
 
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
+
+import TriggerScanSubmitController from "./trigger_scan_submit_controller"
+application.register("trigger-scan-submit", TriggerScanSubmitController)

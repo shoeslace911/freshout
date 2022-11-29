@@ -8,9 +8,18 @@
       <div class="d-flex flex-column align-items-center gap-2">
         <%= link_to "Inventory", house_foods_path, class: "button" %>
         <!-- <%= link_to "Scan", new_house_food_path, class: "button" %> -->
-        <form action="/scan" method="post">
+        <!-- <form action="/scan" method="post">
+          <%# <input type="file" name='receipt'> %>
           <input type="submit">
-        </form>
+      </form>
+      -->
+        <div data-controller="trigger-scan-submit">
+          <%= form_with url: '/scan', method: :post, data: { trigger_scan_submit_target: 'form' } do |f| %>
+            <%= label_tag :photo, "Scan", class: 'button' %>
+            <%= f.file_field :photo, style: 'display: none;', data: { action: 'input->trigger-scan-submit#triggerButton'} %>
+            <%= f.submit 'scan', style: 'display: none;' %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
