@@ -59,6 +59,7 @@ gem "cloudinary"
 # gem 'grpc', '1.47.0'
 gem 'google-api-client'
 gem 'google-cloud-vision'
+gem "noticed", "~> 1.6"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

@@ -5,6 +5,7 @@
     <%= f.input :food_id, collection: @foods, input_html: {data: {controller: "tom-select"}} %>
     <%= f.input :amount %>
     <%= f.input :measurement, collection: HouseFood::MEASUREMENT %>
+    <%= f.input :comment %>
     <%= f.submit  %>
   <% end %>
 </div>

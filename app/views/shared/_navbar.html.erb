@@ -8,8 +8,16 @@
       <span style="color: #4EC068;">Freshout</span>
     <% end %>
     <% if user_signed_in? %>
-      <%=  link_to  shopping_list_path(current_user.house.shopping_lists.first), class: 'navbar-shopping-list-link', style: 'font-size: 32px;' do %>
-        <i class="fa-solid fa-basket-shopping"></i>
+      <% if @unseen_items != nil  %>
+        <% if @unseen_items.any? %>
+          <%=  link_to  shopping_list_path(current_user.house.shopping_lists.first), class: 'navbar-shopping-list-link-red', style: 'font-size: 32px;' do %>
+            <i class="fa-solid fa-basket-shopping"></i>
+          <% end %>
+        <% else %>
+          <%=  link_to  shopping_list_path(current_user.house.shopping_lists.first), class: 'navbar-shopping-list-link', style: 'font-size: 32px;' do %>
+            <i class="fa-solid fa-basket-shopping"></i>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   </div>

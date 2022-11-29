@@ -24,8 +24,11 @@ class GetFoodService
           name: ingredient_hash['food'],
           category: ingredient_hash['foodCategory']
         )
-        file = URI.open(ingredient_hash['image'])
-        food.photo.attach(io: file, filename: "#{ingredient_hash['food']}.png", content_type: "image/png")
+        puts "getting image for #{food.name}"
+        if ingredient_hash['image']
+          file = URI.open(ingredient_hash['image'])
+          food.photo.attach(io: file, filename: "#{ingredient_hash['food']}.png", content_type: "image/png")
+        end
         food.save
       end
     end
