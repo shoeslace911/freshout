@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/scan', to: 'house_foods#scan'
   resources :shopping_lists, only: [:show]
   resources :house_foods do
+    resources :items, only: [:create]
     member do
       patch :eat
       patch :add

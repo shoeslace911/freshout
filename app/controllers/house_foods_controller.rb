@@ -9,7 +9,6 @@ class HouseFoodsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: "house_foods/cards", locals: { foods: @foods }, formats: [:html] }
     end
-
   end
 
   def show
@@ -31,20 +30,24 @@ class HouseFoodsController < ApplicationController
     # otherwise, the food is submitted in the form
     if from_shopping_list?
       food = Food.find(params[:food_id])
+      food.add_expiry
       @house_food = HouseFood.new(
         food: food,
         bought_date: Date.today,
-        expiry_date: Date.today + 7,
+        expiry_date: Date.today + food.expiry_days,
         house: current_user.house,
         owned: true,
         amount: params[:amount].to_i
       )
+
     else
       @house_food = HouseFood.new(house_food_params)
     end
     @house_food.house = current_user.house
     # can make user modify?
-    @house_food.expiry_date = Date.today + @house_food.food.expiry_days
+    food = @house_food.food
+    food.add_expiry
+    @house_food.expiry_date = @house_food.bought_date + food.expiry_days
     authorize @house_food
     # this is when the food is created from inventory
     if from_shopping_list? && @house_food.save
@@ -52,6 +55,7 @@ class HouseFoodsController < ApplicationController
       item.destroy
       redirect_to house_foods_path
     elsif @house_food.save
+
       redirect_to house_foods_path
     else
       render :new, status: :unprocessable_entity

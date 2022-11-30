@@ -1,11 +1,8 @@
 <% @foods.each do |house_food|  %>
-  <div class="card-link">
+  <div class="card-link" data-controller="toast">
     <%= link_to house_food_path(house_food), class: 'links'  do%>
       <%# test the ternary if statement when the house food create starts working %>
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= house_food.food.photo.key ? cl_image_path(house_food.food.photo.key) : image_path('no-image.jpg') %>)" id="<%= (house_food.expiry_date - Date.today).to_i %>">
-        <div class="icon">
-          <i class="fa-solid fa-triangle-exclamation" id="warning"></i>
-        </div>
         <div class="card-details">
           <% if house_food.amount > 1 %>
             <h5>
@@ -21,11 +18,21 @@
           <h6><%= (house_food.expiry_date - Date.today).to_i %> Days left</h6>
         </div>
       <% end %>
+        <div class="icon">
+          <i class="fa-solid fa-triangle-exclamation" id="warning"></i>
+        </div>
+    </div>
+    <div class="d-flex position-absolute top-0">
+      <%= simple_form_for([house_food, Item.new], data: { action: 'submit->toast#addedToShoppingList', toast_target: 'form'}) do |f| %>
+        <%= hidden_field_tag :food_id, house_food.food.id %>
+        <%= button_tag type: 'submit', class: 'button-shopping-list' do %>
+          <i class="fa-solid fa-basket-shopping"></i>
+        <% end %>
+      <% end %>
     </div>
     <div class="d-flex position-absolute top-0 end-0">
       <%= link_to house_food_path(house_food), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete-button' do %>
-        <i class="fa-solid fa-minus"></i>
-        <%# <i class="fa-solid fa-square-minus"></i> %>
+        <i class="fa-solid fa-xmark"></i>
       <% end %>
     </div>
   </div>

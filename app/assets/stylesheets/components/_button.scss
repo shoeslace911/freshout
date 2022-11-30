@@ -40,3 +40,10 @@
     background-color: rgb(240, 240, 240);
   }
 }
+
+.warning-button::after {
+  content: "⚠";
+  color: yellow;
+  font-size: 25px;
+  font-weight: bold;
+}
