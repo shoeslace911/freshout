@@ -15,7 +15,13 @@
           <% else %>
             <h5><%= house_food.food.name %></h5>
           <% end %>
+          <% if (house_food.expiry_date - Date.today).to_i == 1 %>
+          <h6>Expiring tomorrow!</h6>
+          <% elsif (house_food.expiry_date - Date.today).to_i > 1%>
           <h6><%= (house_food.expiry_date - Date.today).to_i %> Days left</h6>
+          <% else %>
+          <h6>Expired!</h6>
+          <% end %>
         </div>
       <% end %>
         <div class="icon">
