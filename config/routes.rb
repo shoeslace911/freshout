@@ -6,7 +6,8 @@ Rails.application.routes.draw do
       patch :store_all
     end
   end
-  post '/scan', to: 'house_foods#scan'
+  post '/', to: 'house_foods#scan'
+  # patch , to:
   resources :shopping_lists, only: [:show]
   resources :house_foods do
     resources :items, only: [:create]
