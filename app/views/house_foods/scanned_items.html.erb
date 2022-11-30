@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Items added to inventory</h1>
+  <% @scanned_house_foods.each do |scanned_house_food| %>
+    <div class="card-product mt-3 position-relative" style="height: 180px;">
+      <% if scanned_house_food.food.photo.attached? %>
+        <%= cl_image_tag scanned_house_food.food.photo.key, alt: "text" %>
+      <% else %>
+        <%= image_tag 'no-image.jpg' %>
+      <% end %>
+      <div class="d-flex flex-column p-3">
+        <h1><%= scanned_house_food.food.name %></h1>
+        <%= form_for scanned_house_food, data: {controller: 'scan-page', action: 'submit->scan-page#preventReload' } do |f| %>
+          <div class="d-flex gap-3">
+            <div class="card-small-input">
+              <%= label_tag :amount, "Quantity:" %>
+              <%= f.number_field :amount, placeholder: 'Quantity'%>
+            </div>
+            <div class="card-small-input">
+              <%= label_tag :measurement, "Meas.:" %>
+              <%= f.text_field :measurement, placeholder: 'Measurement' %>
+            </div>
+          </div>
+          <%= label_tag :expiry_date, "Expiry date:" %>
+          <%= f.date_field :expiry_date %>
+          <div class="d-grid">
+            <%= f.submit 'Update', class: 'btn btn-success', style: 'background-color: #4EC068; color: rgb(240, 240, 240); width: 100%' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

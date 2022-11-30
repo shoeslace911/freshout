@@ -9,7 +9,7 @@ class HouseFoodsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: "house_foods/cards", locals: { foods: @foods }, formats: [:html] }
     end
-    
+
   end
 
   def show
@@ -65,6 +65,12 @@ class HouseFoodsController < ApplicationController
     redirect_to house_foods_path
   end
 
+  def update
+    @house_food = HouseFood.find(params[:id])
+    authorize @house_food
+    @house_food.update(scanned_params)
+  end
+
   def eat
     @house_food = HouseFood.find(params[:id])
     @house_food.amount -= 1
@@ -88,12 +94,13 @@ class HouseFoodsController < ApplicationController
     end
     bought_foods = []
     @lines.each do |line|
-      puts line.downcase
+      # puts line.downcase
       if mapped_foods.include?(line.downcase)
         food = Food.where('name ILIKE ?', "#{line.downcase}").first
         bought_foods.push(food)
       end
     end
+    @scanned_house_foods = []
     bought_foods.each do |bought_food|
       @house_food = HouseFood.new(
         food_id: bought_food.id,
@@ -105,17 +112,22 @@ class HouseFoodsController < ApplicationController
       )
       authorize @house_food
       @house_food.save
+      @scanned_house_foods << @house_food
     end
-    redirect_to house_foods_path
+    render :scanned_items
   end
 
   private
 
   def house_food_params
-    params.require(:house_food).permit( :food_id, :amount, :bought_date, :expiry_date, :measurement )
+    params.require(:house_food).permit(:food_id, :amount, :bought_date, :expiry_date, :measurement)
   end
 
   def from_shopping_list?
     params[:food_id].present?
+  end
+
+  def scanned_params
+    params.require(:house_food).permit(:amount, :measurement, :expiry_date)
   end
 end

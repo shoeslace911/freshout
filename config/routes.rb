@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       patch :eat
       patch :add
     end
+    # collection do
+    #   get :scanned_items
+    # end
   end
   resources :foods, only: [] do
     resources :house_foods, only: :create
