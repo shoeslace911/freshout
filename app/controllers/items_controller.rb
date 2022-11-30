@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
     @item.shopping_list = current_user.house.shopping_lists.first
     @item.user = current_user
     authorize @item
+
     if params[:item]
       @item.amount = params[:item][:amount]
       @item.food = Food.find(params[:item][:food_id])
@@ -29,6 +30,10 @@ class ItemsController < ApplicationController
       else
         render :new, status: :unprocessable_entity
       end
+    elsif params[:house_food_id]
+      @item.food = HouseFood.find(params[:house_food_id]).food
+      @item.save
+      redirect_to shopping_list_path(@item.shopping_list)
     else
       @item.amount = 1
       @item.food = Food.find(params[:food_id])

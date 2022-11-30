@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema[7.0].define(version: 2022_11_29_013614) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_013614) do
     t.string "measurement"
     t.text "comment"
     t.bigint "user_id"
-    t.boolean "seen", default: false, null: false
+    t.boolean "seen", default: false
     t.index ["food_id"], name: "index_items_on_food_id"
     t.index ["shopping_list_id"], name: "index_items_on_shopping_list_id"
     t.index ["user_id"], name: "index_items_on_user_id"

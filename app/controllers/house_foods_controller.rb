@@ -9,7 +9,6 @@ class HouseFoodsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: "house_foods/cards", locals: { foods: @foods }, formats: [:html] }
     end
-    
   end
 
   def show
