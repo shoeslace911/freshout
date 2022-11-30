@@ -3,5 +3,5 @@
 meta_product_name: "FreshOut"
 meta_title: "FreshOut - Prevent food waste"
 meta_description: "FreshOut is an app that helps you prevent food waste. Track expiration dates, make a robust shopping list."
-meta_image: "freshout-logo-big.png" # should exist in `app/assets/images/`
+meta_image: "freshou-logo-perfect.png" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"
