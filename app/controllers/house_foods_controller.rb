@@ -110,7 +110,7 @@ class HouseFoodsController < ApplicationController
         food_id: bought_food.id,
         amount: 1,
         bought_date: Date.today,
-        expiry_date: Date.today + 7,
+        expiry_date: bought_food.expiry_days ? Date.today + bought_food.expiry_days : Date.today + 7,
         house: current_user.house,
         owned: true
       )
@@ -118,8 +118,18 @@ class HouseFoodsController < ApplicationController
       @house_food.save
       @scanned_house_foods << @house_food
     end
+    # bought_foods
+    current_user.house.shopping_lists.first.items.each do |item|
+      # item_array << item.food
+      item.destroy if bought_foods.include?(item.food)
+    end
+
     render :scanned_items
   end
+
+  # def update_all
+  #   raise
+  # end
 
   private
 
