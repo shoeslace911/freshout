@@ -13,6 +13,9 @@ application.register("scan-page", ScanPageController)
 import SearchFoodsController from "./search_foods_controller"
 application.register("search-foods", SearchFoodsController)
 
+import SubmitAllScannedController from "./submit_all_scanned_controller"
+application.register("submit-all-scanned", SubmitAllScannedController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
 
