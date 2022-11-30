@@ -400,6 +400,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   google-api-client
   google-cloud-vision
+  grpc (= 1.47.0)
   jbuilder
   jsbundling-rails
   noticed (~> 1.6)

@@ -15,6 +15,12 @@
     color: #5BAC29;
     background-color: rgb(240, 240, 240);
   }
+  &.small-button {
+    width: 118px;
+    margin: 0px auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
 }
 
 .warning-button {
