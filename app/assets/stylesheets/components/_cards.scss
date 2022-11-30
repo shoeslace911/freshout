@@ -9,9 +9,9 @@
   color: white;
   font-size: 24px;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   padding: 8px;
 }
 
@@ -61,6 +61,7 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
 .links {
   color: #FFFFFF !important;
   text-decoration: none;
@@ -72,9 +73,10 @@
 
 .icon {
   position: absolute;
-  bottom: 80%;
-  margin-left: 5%;
+  bottom: 0;
+  right: 5%;
 }
+
 .delete {
   position: absolute;
   bottom: 80%;
@@ -92,10 +94,12 @@
 [id="0"] {
   border: solid 5px rgba(217, 4, 4, 0.848);
 }
+
 #warning {
   opacity: 0;
   color: red;
 }
+
 [id="1"] #warning {
   opacity: 1;
 }
@@ -108,7 +112,7 @@
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
 }
@@ -137,4 +141,10 @@
 .card-product .card-product-infos {
   padding: 16px;
   font-size: 20px;
+}
+
+.card-small-input {
+  * {
+    width: 100%;
+  }
 }

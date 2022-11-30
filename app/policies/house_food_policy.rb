@@ -25,6 +25,10 @@ class HouseFoodPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    true
+  end
+
   def add?
     true
   end
