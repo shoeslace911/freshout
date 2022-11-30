@@ -17,7 +17,7 @@ class Food < ApplicationRecord
     when 'wines', 'condiments and sauces', "Condiments and sauces", "plant-based protein"
       self.expiry_days = 365
     when 'Milk', 'yogurt', "bread, rolls and tortillas", "Dairy", "dairy", "eggs", "Eggs"
-      self.expiry_days = 13
+      self.expiry_days = 7
     when 'grain', 'Grain', 'Grains', 'grains'
       self.expiry_days = 250
     else

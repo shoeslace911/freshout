@@ -1,0 +1,7 @@
+# config/meta.yml
+
+meta_product_name: "FreshOut"
+meta_title: "FreshOut - Prevent food waste"
+meta_description: "FreshOut is an app that helps you prevent food waste, gives you a shopping cart feature "
+meta_image: "freshout-logo.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"
