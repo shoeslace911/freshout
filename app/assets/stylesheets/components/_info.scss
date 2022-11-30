@@ -1,0 +1,21 @@
+.info {
+  position: sticky;
+  z-index: 10;
+  background-color: $light-gray;
+  top: 60px;
+  padding-top: 16px;
+  left: 0;
+  right: 0;
+  margin-inline: -16px;
+  padding-inline: 16px;
+}
+
+.list-info {
+  position: sticky;
+  z-index: 10;
+  background-color: $light-gray;
+  top: 64px;
+  margin-inline: -16px;
+  padding-inline: 16px;
+  padding-top: 16px;
+}
