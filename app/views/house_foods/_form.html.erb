@@ -1,7 +1,8 @@
 <%= simple_form_for [item.food, house_food] do |f| %>
   <%= hidden_field_tag :amount, item.amount %>
   <%= hidden_field_tag :item_id, item.id %>
-  <%= f.button :button, class: 'button-shopping-list' do %>
-  <i class="fa-regular fa-credit-card"></i>
+  <%= f.button :button do%>
+  <a href="" class="button small-button">Kitchen➕</a>
   <% end %>
+
 <% end %>

@@ -37,9 +37,11 @@ puts "Shopping list created"
 
   # puts "Created #{house_food.name} as a house food."
 end
+
 puts "House foods created"
-User.create!(username: 'will_hargrave', email: 'will@will.com', password: 123456, house: House.first)
-User.create!(username: 'sho_fujiwara', email: 'sho@sho.com', password: 123456, house: House.first)
+User.create!(username: 'Will', email: 'will@will.com', password: 123456, house: House.first)
+User.create!(username: 'Sho', email: 'sho@sho.com', password: 123456, house: House.first)
+User.create!(username: 'Sunny', email: 'sunny@sunny.com', password: 123456, house: House.first)
 
 6.times do
   Item.create!(

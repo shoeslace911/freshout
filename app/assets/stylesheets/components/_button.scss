@@ -18,10 +18,11 @@
     background-color: rgb(240, 240, 240);
   }
   &.small-button {
-    width: 118px;
-    margin: 0px auto;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    width: 80px;
+    height: 35px;
+    padding: 6px;
+    box-shadow: $box-shadow;
+    text-shadow: $text-shadow;
   }
 }
 
