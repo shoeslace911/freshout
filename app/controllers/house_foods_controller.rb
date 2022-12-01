@@ -1,4 +1,6 @@
 class HouseFoodsController < ApplicationController
+  skip_after_action :verify_authorized, only: :scan
+
   def index
     if params[:query].present?
       @foods = policy_scope(HouseFood).search_for_name_and_category(params[:query]).order("expiry_date")
@@ -100,7 +102,7 @@ class HouseFoodsController < ApplicationController
     end
     bought_foods = []
     @lines.each do |line|
-      # puts line.downcase
+      puts line.downcase
       if mapped_foods.include?(line.downcase)
         food = Food.where('name ILIKE ?', "#{line.downcase}").first
         bought_foods.push(food)
@@ -116,7 +118,7 @@ class HouseFoodsController < ApplicationController
         house: current_user.house,
         owned: true
       )
-      authorize @house_food
+      # authorize @house_food
       @house_food.save
       @scanned_house_foods << @house_food
     end

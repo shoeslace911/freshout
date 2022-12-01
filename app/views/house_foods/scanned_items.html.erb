@@ -1,27 +1,27 @@
 <div class="container" data-controller="submit-all-scanned">
-  <div class="info" style="top: 56px; padding-bottom: 16px;">
-    <h1>Items added to inventory</h1>
-    <button class="button small-button" data-action="click->submit-all-scanned#submitAll">Update</button>
+  <div class="info d-flex justify-content-between align-items-center" style="top: 56px; padding-bottom: 16px;">
+    <h1 class="ms-1">All good?</h1>
+    <button class="button small-button" style="margin: 0 8px;" data-action="click->submit-all-scanned#submitAll">Confirm</button>
   </div>
   <% @scanned_house_foods.each do |scanned_house_food| %>
-    <div class="card-product mt-3 position-relative" style="height: 180px;">
+    <div class="card-product mt-3 position-relative" style="height: 160px;">
       <% if scanned_house_food.food.photo.attached? %>
         <%= cl_image_tag scanned_house_food.food.photo.key, alt: "text" %>
       <% else %>
         <%= image_tag 'no-image.jpg' %>
       <% end %>
-      <div class="d-flex flex-column p-3 overflow-hidden">
-        <h1><%= scanned_house_food.food.name %></h1>
+      <div class="d-flex flex-column p-3 align-items-start overflow-hidden flex-grow-1">
+        <p style="font-family: 'Alata', sans-serif; font-weight: 400; font-size: 24px; opacity: 1;"><%= scanned_house_food.food.name %></p>
         <%= simple_form_for scanned_house_food, data: {controller: 'scan-page', action: 'submit->scan-page#preventReload', submit_all_scanned_target: 'form' } do |f| %>
           <div class="d-flex gap-3">
             <%# <div class="card-small-input"> %>
-            <%= f.input :amount, label: 'Qty.:', wrapper_html: {class: 'w-50'},input_html: { placeholder: 'Quantity', class: 'w-100' }%>
+            <%= f.input :amount, label: false, wrapper_html: { style: 'font-size: 16px; width: 30px;'}, input_html: { placeholder: 'Quantity', class: 'amount-field', style: 'width: 40px;'} %>
             <%# </div> %>
             <%# <div class="card-small-input"> %>
-            <%= f.input :measurement, label: 'Meas.:', collection: HouseFood::MEASUREMENT, wrapper_html: {class: 'w-50'}, input_html: { placeholder: 'Measurement', class: 'w-100' } %>
+            <%= f.input :measurement, label: false, class: 'measurement-field', collection: HouseFood::MEASUREMENT, wrapper_html: {class: 'w-50'}, input_html: { placeholder: 'Measurement', class: 'measurement-field' } %>
             <%# </div> %>
           </div>
-          <%= f.input :expiry_date, html5: :true %>
+          <%= f.input :expiry_date, html5: :true, input_html: { class: 'expiry-date' } %>
           <%# <div class="d-grid"> %>
           <%= f.submit 'Update', class: 'btn btn-success d-none', wrapper_html: {class: 'd-grid'}, style: 'background-color: #4EC068; color: rgb(240, 240, 240); width: 100%' %>
           <%# </div> %>

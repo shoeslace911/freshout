@@ -7,7 +7,9 @@ class HouseFood < ApplicationRecord
   # the food table itself
   validates :amount, presence: true
   validates :bought_date, presence: true
- 
+  before_validation :add_amount
+  before_validation :add_measurement
+
   MEASUREMENT = ["bag", "bottle", "sack", "loaf", "carton", "can", "jar", "piece", "pint", "slice", "pack", "rash", "bunch", "gram", "ounce", "millimetre", "fluid ounce"]
 
   include PgSearch::Model
@@ -19,5 +21,19 @@ class HouseFood < ApplicationRecord
     tsearch: { prefix: true }
   }
 
+  def add_amount
+    if amount.nil?
+      self.amount = 1
+    end
+  end
 
+  def add_measurement
+    if measurement.nil?
+      case food.name.downcase
+      when 'potatoes' then self.measurement = 'sack'
+      when 'onion' then self.measurement = 'bag'
+      when 'strawberries' then self.measurement = 'pack'
+      end
+    end
+  end
 end
