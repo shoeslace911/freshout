@@ -1,23 +1,27 @@
 <div class="container">
-<div class="list-info">
-  <h1 class="text-center mt-3">Shopping List<%= link_to new_item_path, class: 'text-decoration-none'  do%>
-      <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
-    <% end %>
-  </h1>
-  <div class="d-flex justify-content-around">
-    <%= simple_form_for @shopping_list, url:store_all_shopping_list_path do |f| %>
-      <%= f.button :submit, "Add all", class: "button small-button" %>
-    <% end %>
-    <div data-controller="trigger-scan-submit">
-      <%= form_with url: '/scan', method: :post, data: { trigger_scan_submit_target: 'form' } do |f| %>
-        <%= label_tag :photo, "Scan", class: 'button small-button' %>
-        <%= f.file_field :photo, style: 'display: none;', data: { action: 'input->trigger-scan-submit#triggerButton'} %>
-        <%= f.submit 'scan', style: 'display: none;' %>
+  <div class="list-info">
+    <h1 class="text-center mt-3">Shopping List<%= link_to new_item_path, class: 'text-decoration-none'  do%>
+        <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
       <% end %>
+    </h1>
+    <div class="d-flex justify-content-around">
+      <%= simple_form_for @shopping_list, url:store_all_shopping_list_path do |f| %>
+        <%= f.button :button, class: "button small-button", style: 'height: 100%; width: auto;' do %>
+          Add all to kitchen
+        <% end %>
+      <% end %>
+      <div data-controller="trigger-scan-submit" class="position-relative">
+        <%= form_with url: '/', method: :post, data: { trigger_scan_submit_target: 'form' } do |f| %>
+          <%= label_tag :photo, "Scan receipt", class: 'button small-button', style: 'width: auto;' %>
+          <%= f.file_field :photo, style: 'display: none;', data: { action: 'input->trigger-scan-submit#triggerButton'} %>
+          <%= f.submit 'scan', style: 'display: none;' %>
+        <% end %>
+        <div class="spinner-border position-absolute top-0 end-0 d-none" role="status" data-trigger-scan-submit-target="loading">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
   <div>
     <% @items.each do |item| %>
       <div class="card-product mt-3 position-relative">
