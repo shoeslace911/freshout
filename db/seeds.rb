@@ -6,6 +6,11 @@ HouseFood.destroy_all
 User.destroy_all
 House.destroy_all
 ShoppingList.destroy_all
+Food.destroy_all
+
+Food.create!(name: "salmon")
+Food.create!(name: "potatoes")
+Food.create!(name: "onion")
 
 House.create!(
   name: "#{Faker::Name.last_name}'s house"

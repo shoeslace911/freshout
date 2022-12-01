@@ -6,6 +6,11 @@ class HouseFoodsController < ApplicationController
     else
       @foods = policy_scope(HouseFood).order("expiry_date")
     end
+    flash.delete(:alert)
+    if session[:bought_foods].size > 0
+      flash[:alert] = "#{session[:bought_foods].size} foods added to kitchen"
+      session[:bought_foods] = []
+    end
     respond_to do |format|
       format.html # Follow regular flow of Rails
       format.text { render partial: "house_foods/cards", locals: { foods: @foods }, formats: [:html] }
@@ -92,6 +97,8 @@ class HouseFoodsController < ApplicationController
   end
 
   def scan
+    # house_food = HouseFood.new
+    # authorize house_food
     uploading_picture = Cloudinary::Uploader.upload(params[:photo].path)
     @lines = Ocr.extract_text(uploading_picture["secure_url"])
     @foods = Food.all
@@ -106,9 +113,10 @@ class HouseFoodsController < ApplicationController
         bought_foods.push(food)
       end
     end
+    session[:bought_foods] = bought_foods
     @scanned_house_foods = []
     bought_foods.each do |bought_food|
-      @house_food = HouseFood.new(
+      house_food = HouseFood.new(
         food_id: bought_food.id,
         amount: 1,
         bought_date: Date.today,
@@ -116,19 +124,17 @@ class HouseFoodsController < ApplicationController
         house: current_user.house,
         owned: true
       )
-      authorize @house_food
-      @house_food.save
-      @scanned_house_foods << @house_food
+      authorize house_food
+      house_food.save
+      @scanned_house_foods << house_food
     end
     # bought_foods
     current_user.house.shopping_lists.first.items.each do |item|
       # item_array << item.food
       item.destroy if bought_foods.include?(item.food)
     end
-
     render :scanned_items
   end
-
   # def update_all
   #   raise
   # end

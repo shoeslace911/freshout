@@ -20,6 +20,7 @@ export default class extends Controller {
         }
       })
         .then(response => console.log(response))
+        .then((data) => console.log(data))
       // console.log(form)
     })
     window.location.href = '/house_foods';
