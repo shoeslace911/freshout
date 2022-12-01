@@ -5,9 +5,10 @@ class HouseFoodsController < ApplicationController
     else
       @foods = policy_scope(HouseFood).order("expiry_date")
     end
+    flash.delete(:alert)
     if session[:bought_foods].size > 0
       flash[:alert] = "#{session[:bought_foods].size} foods added to kitchen"
-      session[:bought_foods] = 0
+      session[:bought_foods] = []
     end
     respond_to do |format|
       format.html # Follow regular flow of Rails

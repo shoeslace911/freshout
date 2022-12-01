@@ -23,7 +23,7 @@ export default class extends Controller {
         .then((data) => console.log(data))
       // console.log(form)
     })
-    // window.location.href = '/house_foods';
+    window.location.href = '/house_foods';
   }
   getMetaValue(name) {
     const element = document.head.querySelector(`meta[name="${name}"]`)
