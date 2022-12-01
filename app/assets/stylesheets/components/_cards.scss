@@ -123,26 +123,27 @@
   object-fit: cover;
 }
 
-.card-product h1 {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;
-  font-family: $card-font-family;
-}
+// .card-product h1 {
+//   font-size: 24px;
+//   font-weight: bold;
+//   margin: 0;
+//   font-family: $card-font-family;
+// }
 
-.card-product p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
+// .card-product p {
+//   font-size: 12px;
+//   opacity: .7;
+//   margin-bottom: 5;
+//   margin-top: 8px;
+// }
 
 .card-product .card-product-infos {
-  padding: 16px;
+  padding: 8px;
   font-size: 20px;
 }
-
+.card-product h5, h6 {
+  font-family: $card-font-family;
+}
 .card-small-input {
   * {
     width: 100%;
