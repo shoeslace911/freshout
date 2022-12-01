@@ -10,24 +10,21 @@
       <% else %>
         <%= image_tag 'no-image.jpg' %>
       <% end %>
-      <div class="d-flex flex-column p-3">
+      <div class="d-flex flex-column p-3 overflow-hidden">
         <h1><%= scanned_house_food.food.name %></h1>
-        <%= form_for scanned_house_food, data: {controller: 'scan-page', action: 'submit->scan-page#preventReload', submit_all_scanned_target: 'form' } do |f| %>
+        <%= simple_form_for scanned_house_food, data: {controller: 'scan-page', action: 'submit->scan-page#preventReload', submit_all_scanned_target: 'form' } do |f| %>
           <div class="d-flex gap-3">
-            <div class="card-small-input">
-              <%= label_tag :amount, "Quantity:" %>
-              <%= f.number_field :amount, placeholder: 'Quantity'%>
-            </div>
-            <div class="card-small-input">
-              <%= label_tag :measurement, "Meas.:" %>
-              <%= f.text_field :measurement, placeholder: 'Measurement' %>
-            </div>
+            <%# <div class="card-small-input"> %>
+            <%= f.input :amount, label: 'Qty.:', wrapper_html: {class: 'w-50'},input_html: { placeholder: 'Quantity', class: 'w-100' }%>
+            <%# </div> %>
+            <%# <div class="card-small-input"> %>
+            <%= f.input :measurement, label: 'Meas.:', collection: HouseFood::MEASUREMENT, wrapper_html: {class: 'w-50'}, input_html: { placeholder: 'Measurement', class: 'w-100' } %>
+            <%# </div> %>
           </div>
-          <%= label_tag :expiry_date, "Expiry date:" %>
-          <%= f.date_field :expiry_date %>
-          <div class="d-grid">
-            <%= f.submit 'Update', class: 'btn btn-success d-none', style: 'background-color: #4EC068; color: rgb(240, 240, 240); width: 100%' %>
-          </div>
+          <%= f.input :expiry_date, html5: :true %>
+          <%# <div class="d-grid"> %>
+          <%= f.submit 'Update', class: 'btn btn-success d-none', wrapper_html: {class: 'd-grid'}, style: 'background-color: #4EC068; color: rgb(240, 240, 240); width: 100%' %>
+          <%# </div> %>
         <% end %>
       </div>
     </div>
