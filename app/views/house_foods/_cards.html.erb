@@ -2,13 +2,8 @@
   <div class="card-link">
     <%= link_to house_food_path(house_food), class: 'links'  do%>
       <%# test the ternary if statement when the house food create starts working %>
-      <div class="card-product mt-3 position-relative"id="<%= (house_food.expiry_date - Date.today).to_i %>">
-        <div class="card-product-infos">
-        <% if house_food.photo.attached? %>
-          <%= cl_image_tag house_food.photo.key, alt: "text" %>
-        <% else %>
-          <%= image_tag 'no-image.jpg' %>
-        <% end %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= house_food.food.photo.key ? cl_image_path(house_food.food.photo.key) : image_path('no-image.jpg') %>)" id="<%= (house_food.expiry_date - Date.today).to_i %>">
+        <div class="card-details">
           <% if house_food.amount > 1 %>
             <h5>
               <%= house_food.amount %>
