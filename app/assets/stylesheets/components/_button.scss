@@ -3,16 +3,18 @@
   display: block;
   box-sizing: border-box;
   width: 150px;
-  box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.25));
-  text-shadow: (2px 5px 7px rgba(0, 0, 0, 0.25));
-  color: rgb(240, 240, 240);
+  height: 60px;
+  box-shadow: $box-shadow;
+  text-shadow: $text-shadow;
   border-radius: 9px;
-  background-color: #5BAC29;
+  background: $primary-green;
   text-decoration: none;
   padding: 16px 24px;
   transition: 0.30s;
+  color: white;
+  font-size: 16.7px;
   &:hover {
-    color: #5BAC29;
+    color: #a3a3a3;
     background-color: rgb(240, 240, 240);
   }
   &.small-button {
@@ -25,25 +27,38 @@
 
 .warning-button {
   display: block;
+  position: relative;
   box-sizing: border-box;
-  width: 150px;
-  box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.25));
-  text-shadow: (2px 5px 7px rgba(0, 0, 0, 0.25));
-  color: rgb(240, 240, 240);
+  width: 100%;
+  height: 100px;
+  box-shadow: 3px 4px 0px 0px black;
+  text-shadow: 1px 2px 3px black;
+  color: #f0f0f0;
   border-radius: 9px;
-  background-color: #f20a0a;
+  background: linear-gradient(0deg, #fd4949 32%, #ff1212 100%);
   text-decoration: none;
   padding: 16px 24px;
   transition: 0.30s;
   &:hover {
-    color: #5BAC29;
+    color: #a3a3a3;
     background-color: rgb(240, 240, 240);
+  }
+  h3 {
+    text-decoration: none;
   }
 }
 
 .warning-button::after {
-  content: "⚠";
+  content: "!";
   color: yellow;
-  font-size: 25px;
+  position: absolute;
+  top: -48px;
+  right: -9px;
+  font-size: 85px;
   font-weight: bold;
+  text-shadow:$text-shadow;
+}
+
+.button-container{
+  margin-top:-5%;
 }

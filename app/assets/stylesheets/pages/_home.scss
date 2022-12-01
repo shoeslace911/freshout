@@ -1,1 +1,25 @@
 // Specific CSS for your home-page
+.header-container {
+  text-align: center;
+  margin-top:36%;
+  // center items in the middle easy fix
+}
+.header-container div{
+  margin-top:5%;
+}
+.home-slogan {
+  width: 75%;
+  display: inline-block;
+  text-shadow:$text-shadow;
+}
+.inventory-button{
+  background: linear-gradient(0deg, #f6f6f6 32%, #eeeeee 100%);
+}
+.inventory-button p{
+  color: #4ea74e;
+  font-weight: bolder;
+  font-size: 19px;
+  text-shadow: 1px 1px 1px;
+  display: block;
+  margin-top: -0.3vmax;
+}

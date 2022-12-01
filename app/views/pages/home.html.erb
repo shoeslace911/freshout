@@ -1,24 +1,23 @@
 <div class="banner">
-  <div class="row d-flex justify-content-center" style="height:100%">
-    <div class="d-flex flex-column justify-content-around mt-3 text-center">
-      <div>
-        <h1>FRESHOUT</h1>
-        <p class="mt-3 px-2">Keep track of your kitchen’s food and stop wasting food</p>
-      </div>
-      <div class="d-flex flex-column align-items-center gap-2">
-        <div data-controller="trigger-scan-submit">
-          <%= form_with url: '/', method: :post, data: { trigger_scan_submit_target: 'form' } do |f| %>
-            <%= label_tag :photo, "Scan", class: 'button' %>
-            <%= f.file_field :photo, style: 'display: none;', data: { action: 'input->trigger-scan-submit#triggerButton'} %>
-            <%= f.submit 'scan', style: 'display: none;' %>
-          <% end %>
-        </div>
-        <% if @foods.any?  %>
-          <%= link_to "Inventory" , house_foods_path, class: "warning-button" %>
-        <% else %>
-          <%= link_to "Inventory", house_foods_path, class: "button" %>
+  <div class="header-container d-flex justify-content-center flex-column align-items-center">
+    <div>
+      <%= image_tag "freshout-logo-big.png", alt: "text" , class: "w-50"%>
+      <p class="mt-3 px-2 home-slogan">Keep track of your kitchen's food and stop wasting food</p>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-2 button-container">
+      <%= link_to "Shopping List" , shopping_list_path(current_user.house.shopping_lists.first), class: "button" %>
+      <% if @foods.any?  %>
+        <%= link_to house_foods_path do %>
+          <div class="button warning-button">
+            <h3>Inventory</h3>
+            <p> Expiring Foods: <%= @foods.count  %> </p>
+          </div>
         <% end %>
-      </div>
+      <% else %>
+        <%= link_to house_foods_path , class: "button inventory-button" do %>
+          <p>Inventory</p>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
