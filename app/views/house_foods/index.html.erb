@@ -1,21 +1,32 @@
 <div class="container" data-controller="search-foods">
-<div class="info">
-  <h1 style = "color:#73c070">Inventory <%= link_to new_house_food_path  do%>
-      <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
-    <% end %></h1>
-  <div class="mt-2">
-    <%= form_with url: house_foods_path, method: :get, html: {class:
+  <div class="info">
+    <h1 style = "color:#73c070">Inventory <%= link_to new_house_food_path  do%>
+        <i class="fa-sharp fa-solid fa-plus" style = "color:#73c070"></i>
+      <% end %></h1>
+    <div class="mt-2">
+      <%= form_with url: house_foods_path, method: :get, html: {class:
     "mb-4", data: {search_foods_target: "form"}} do |f| %>
-      <%= f.text_field :query, class: "form-control", placeholder:
+        <%= f.text_field :query, class: "form-control", placeholder:
                      "Search your kitchen", value: params[:query],
                      data: {
                         search_foods_target: "input",
                         action: "keyup->search-foods#update"
                       } %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
+  <div data-search-foods-target="cards" class ="cards" data-controller="toast">
+    <% if @foods.blank? %>
+      <div class="empty">
+        <h4 class="text-center">You don't have <%= params[:query]  %> do you want to add it to your shopping list?<%= simple_form_for @item, data: { action: 'submit->toast#addedToShoppingList', toast_target: 'form'} do |f| %>
+            <%#= f.association :food, %>
+            <%= hidden_field_tag :food_id, @searched_food.id %>
+            <%= button_tag "Add To List", type: 'submit'%>
+            </h4>
+            <% end %>
+        </div>
+      <% else %>
+        <%= render "cards", foods: @foods %>
+      <% end %>
+    </div>
   </div>
-  <div data-search-foods-target="cards" class ="cards">
-    <%= render "cards", foods: @foods %>
-  </div>
-</div>

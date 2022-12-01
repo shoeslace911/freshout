@@ -2,6 +2,7 @@ class HouseFoodsController < ApplicationController
   def index
     if params[:query].present?
       @foods = policy_scope(HouseFood).search_for_name_and_category(params[:query]).order("expiry_date")
+      @searched_food = Food.find_by('name ILIKE ?', "%#{params[:query]}%")
     else
       @foods = policy_scope(HouseFood).order("expiry_date")
     end
@@ -9,6 +10,7 @@ class HouseFoodsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: "house_foods/cards", locals: { foods: @foods }, formats: [:html] }
     end
+    @item = Item.new
   end
 
   def show
