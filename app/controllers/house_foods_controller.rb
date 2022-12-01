@@ -2,6 +2,7 @@ class HouseFoodsController < ApplicationController
   def index
     if params[:query].present?
       @foods = policy_scope(HouseFood).search_for_name_and_category(params[:query]).order("expiry_date")
+      @searched_food = Food.find_by('name ILIKE ?', "%#{params[:query]}%")
     else
       @foods = policy_scope(HouseFood).order("expiry_date")
     end
@@ -9,6 +10,7 @@ class HouseFoodsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: "house_foods/cards", locals: { foods: @foods }, formats: [:html] }
     end
+    @item = Item.new
   end
 
   def show
@@ -110,7 +112,7 @@ class HouseFoodsController < ApplicationController
         food_id: bought_food.id,
         amount: 1,
         bought_date: Date.today,
-        expiry_date: Date.today + 7,
+        expiry_date: bought_food.expiry_days ? Date.today + bought_food.expiry_days : Date.today + 7,
         house: current_user.house,
         owned: true
       )
@@ -118,8 +120,18 @@ class HouseFoodsController < ApplicationController
       @house_food.save
       @scanned_house_foods << @house_food
     end
+    # bought_foods
+    current_user.house.shopping_lists.first.items.each do |item|
+      # item_array << item.food
+      item.destroy if bought_foods.include?(item.food)
+    end
+
     render :scanned_items
   end
+
+  # def update_all
+  #   raise
+  # end
 
   private
 
