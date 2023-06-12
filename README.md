@@ -1,5 +1,7 @@
 <h1>Fresh Out</h1>
 <p>It is an app for tracking the food you have and it helps you prevent wasting food. Buying stuff you already have but didn't know</p>
+
+<h2>Check out our presentation <strong><a href="https://www.youtube.com/watch?v=YAwYAroMBV4">HERE</a></strong>  
 <h1>Homepage</h1>
 
 ![image](https://user-images.githubusercontent.com/98511262/205536078-55281a1c-338e-4e7f-bde6-ec482898a6c8.png)
